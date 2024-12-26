@@ -536,20 +536,20 @@ if selected == "Forecasting Model":
             forecast_dict = {}
 
             # Sequential processing to fit ARIMA models and forecast
-            for col in complete_df.columns:
-                forecast_dict[col] = fit_and_forecast(complete_df[col], col)
+            for col in data.columns:
+                forecast_dict[col] = fit_and_forecast(data[col], col)
 
             # Convert the results into a DataFrame
             forecast_df = pd.DataFrame(
                 forecast_dict,
                 index=pd.date_range(
-                    start=complete_df.index[-1] + pd.offsets.MonthBegin(1),
+                    start=data.index[-1] + pd.offsets.MonthBegin(1),
                     periods=12,
                     freq='MS'
                 )
             )
 
-            data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
+            data = pd.concat([data, forecast_df], axis=0, ignore_index=False) 
 
             st.dataframe(data, height=210, use_container_width=True)
 
