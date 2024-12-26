@@ -1,0 +1,14 @@
+numpy
+pandas
+matplotlib
+seaborn
+altair
+plotly
+streamlit
+streamlit-option-menu
+st-aggrid
+pygwalker
+statsmodels
+pmdarima
+yfinance
+joblib
