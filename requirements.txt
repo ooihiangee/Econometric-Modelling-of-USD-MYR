@@ -9,7 +9,7 @@ plotly
 streamlit
 streamlit-option-menu
 streamlit-aggrid
-pygwalker
+pygwalker==0.4.9.13
 statsmodels
 yfinance
 joblib
