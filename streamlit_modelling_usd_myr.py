@@ -528,7 +528,7 @@ if selected == "Forecasting Model":
 
         if missing_columns:
             missing_columns_str = ", ".join(missing_columns)
-            st.error(f"The following required columns are missing from the CSV file: {missing_columns_str}")
+            st.write(f"The following required columns are missing from the CSV file: {missing_columns_str}")
         else:
             st.success("All required columns are present in the CSV file.")
 
