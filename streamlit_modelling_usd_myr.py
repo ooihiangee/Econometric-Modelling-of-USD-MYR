@@ -406,11 +406,9 @@ if selected == "About":
     st.markdown("<h3>Data Used</h3>", unsafe_allow_html=True)
     st.markdown("There are a total of 18 variables utilised in this study to map the relationship between the macroeconomic factors and USD/MYR currency exchange rates. All the data is secondary data obtained from a range of reliable source, namely Yahoo Finance at https://finance.yahoo.com/, Malaysia’s official open data portal at https://data.gov.my/, Central Bank of Malaysia (BNM) at https://www.bnm.gov.my/, United States Census Bureau at https://www.census.gov/ and Federal Reserve Economic Data (FRED) at https://fred.stlouisfed.org/. The data obtained is of monthly time series data which spans the period from January 2015 until July 2024.")
     
-    # Reset index and drop it
-    data_dict = data_dict().reset_index(drop=True)
-
     # Data Dictionary
     st.caption('**Table 1.** Data Dictionary.')
+    data_dict = data_dict().set_index('No.', inplace=True)
     st.dataframe(data_dict, height=360, use_container_width=True)
     
     # Time Series Data
