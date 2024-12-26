@@ -511,9 +511,19 @@ if selected == "Forecasting Model":
     if uploaded_file:
 
         # Load and display data
-        data_load_state = st.text('Loading data...')    
-        data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
+        data_load_state = st.text('Loading data...') 
+
+        try:
+            data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
+        except ValueError as ve:
+            st.error(f"Error: {ve}. Please ensure the 'Date' column exists and is in a valid date format.")
+        except pd.errors.ParserError:
+            st.error("Error: Failed to parse the CSV file. Please ensure it is a valid CSV file.")
+        except Exception as e:
+            st.error(f"An unexpected error occurred: {e}")
+
         data_load_state.text('Loading data... done!')
+        
         st.write("Uploaded Data:")
         st.dataframe(data, height=210, use_container_width=True)
 
@@ -537,7 +547,7 @@ if selected == "Forecasting Model":
 
             # Sequential processing to fit ARIMA models and forecast
             for col in data.columns:
-                forecast_dict[col] = fit_and_forecast(data[col], col)
+                forecast_dict[col] = fit_and_forecast(data[col], col, forecast_period)
 
             # Convert the results into a DataFrame
             forecast_df = pd.DataFrame(
