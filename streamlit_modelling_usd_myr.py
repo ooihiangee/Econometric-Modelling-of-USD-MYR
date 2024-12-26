@@ -523,7 +523,7 @@ if selected == "Forecasting Model":
             st.error(f"An unexpected error occurred: {e}")
 
         data_load_state.text('Loading data... done!')
-        
+
         st.write("Uploaded Data:")
         st.dataframe(data, height=210, use_container_width=True)
 
@@ -540,7 +540,7 @@ if selected == "Forecasting Model":
             st.success("All required columns are present in the CSV file.")
 
             # Parallel processing to fit ARIMA models and forecast
-            data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
+            data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to a few minutes...')
 
             # Initialize an empty dictionary to store forecasts
             forecast_dict = {}
