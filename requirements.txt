@@ -6,7 +6,7 @@ altair
 plotly
 streamlit
 streamlit-option-menu
-st-aggrid
+streamlit-aggrid
 pygwalker
 statsmodels
 pmdarima
