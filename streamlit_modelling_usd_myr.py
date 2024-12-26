@@ -735,54 +735,54 @@ if selected == "Source Codes":
 if selected == "UAT":
 
     # Function to fit ARIMA and forecast for a single series
-    def fit_and_forecast(series, column_name):
-        print(f"Processing {column_name}")
-        model = auto_arima(series, seasonal=True, m=12, stepwise=True, suppress_warnings=True, error_action='ignore')
-        forecast = model.predict(n_periods=12)  # Generate 12-month forecast
-        return column_name, forecast
+    # def fit_and_forecast(series, column_name):
+    #     print(f"Processing {column_name}")
+    #     model = auto_arima(series, seasonal=True, m=12, stepwise=True, suppress_warnings=True, error_action='ignore')
+    #     forecast = model.predict(n_periods=12)  # Generate 12-month forecast
+    #     return column_name, forecast
 
-    # Parallel processing to fit ARIMA models and forecast
-    results = Parallel(n_jobs=-1)(
-        delayed(fit_and_forecast)(complete_df[col], col) for col in complete_df.columns
-    )
+    # # Parallel processing to fit ARIMA models and forecast
+    # results = Parallel(n_jobs=-1)(
+    #     delayed(fit_and_forecast)(complete_df[col], col) for col in complete_df.columns
+    # )
 
-    # Convert the results into a DataFrame
-    forecast_dict = {col: forecast for col, forecast in results}
-    forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-        start=complete_df.index[-1] + pd.offsets.MonthBegin(1), periods=12, freq='MS'
-    ))
+    # # Convert the results into a DataFrame
+    # forecast_dict = {col: forecast for col, forecast in results}
+    # forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
+    #     start=complete_df.index[-1] + pd.offsets.MonthBegin(1), periods=12, freq='MS'
+    # ))
 
-    # Load the saved Random Forest model and feature selector
-    model = joblib.load("best_lgb_model.pkl")
-    selector = joblib.load("best_lgb_features.pkl")
+    # # Load the saved Random Forest model and feature selector
+    # model = joblib.load("best_lgb_model.pkl")
+    # selector = joblib.load("best_lgb_features.pkl")
 
-    # Streamlit app title
-    st.title("Exchange Rate Forecasting App")
+    # # Streamlit app title
+    # st.title("Exchange Rate Forecasting App")
 
-    # User input form
-    st.header("Enter Macro-Economic Variables")
-    num_features = selector.get_support(indices=True).shape[0]
+    # # User input form
+    # st.header("Enter Macro-Economic Variables")
+    # num_features = selector.get_support(indices=True).shape[0]
 
-    # Example: Assuming 5 macroeconomic features
-    feature_inputs = []
-    for i in range(num_features):
-        feature_value = st.number_input(f"Feature {i+1}", min_value=0.0, max_value=10000.0, step=0.1)
-        feature_inputs.append(feature_value)
+    # # Example: Assuming 5 macroeconomic features
+    # feature_inputs = []
+    # for i in range(num_features):
+    #     feature_value = st.number_input(f"Feature {i+1}", min_value=0.0, max_value=10000.0, step=0.1)
+    #     feature_inputs.append(feature_value)
 
-    # Predict button
-    if st.button("Forecast Exchange Rate"):
-        # Convert user inputs to a NumPy array and reshape for prediction
-        user_input_array = np.array(feature_inputs).reshape(1, -1)
+    # # Predict button
+    # if st.button("Forecast Exchange Rate"):
+    #     # Convert user inputs to a NumPy array and reshape for prediction
+    #     user_input_array = np.array(feature_inputs).reshape(1, -1)
         
-        # Transform the input using the selector
-        transformed_input = selector.transform(user_input_array)
+    #     # Transform the input using the selector
+    #     transformed_input = selector.transform(user_input_array)
         
-        # Predict the exchange rate
-        predicted_er = model.predict(transformed_input)
+    #     # Predict the exchange rate
+    #     predicted_er = model.predict(transformed_input)
         
-        # Display the result
-        st.subheader("Forecasted Exchange Rate")
-        st.write(f"The predicted exchange rate is: {predicted_er[0]:.2f}")
+    #     # Display the result
+    #     st.subheader("Forecasted Exchange Rate")
+    #     st.write(f"The predicted exchange rate is: {predicted_er[0]:.2f}")
 
     # st.sidebar.title("Navigation")
     # options = st.sidebar.radio("Select a section:", ["Upload Data", "Data Preprocessing", "Modeling", "Evaluation", "Forecasting"])
