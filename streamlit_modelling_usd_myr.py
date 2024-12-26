@@ -501,7 +501,7 @@ if selected == "Forecasting Model":
 
     # Sample Input Data
     with st.expander(r"$\textsf{\Large Sample Input Data}$", expanded=True):
-        st.dataframe(read_data(), height=210)
+        st.dataframe(read_data(), height=210, hide_index=True)
 
     # Forecast Settings
     st.subheader("Choose Your Forecast Horizon")
