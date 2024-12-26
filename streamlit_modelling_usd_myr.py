@@ -408,13 +408,14 @@ if selected == "About":
    
     # Data Dictionary
     st.caption('**Table 1.** Data Dictionary.')
-    AgGrid(data_dict(), height=560)
+    st.dataframe(data_dict().style.hide_index(), height=360, use_container_width=True)
+    # AgGrid(data_dict(), height=560)
 
     # Data Points   
     # st.caption('**Table 2.** Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.')
     # AgGrid(read_data(displayDate=True), height=350)
-    st.caption("**Table 2. Time Series Data**")
-    st.dataframe(read_data(), height=560, use_container_width=True)
+    st.caption("**Table 2. Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.**")
+    st.dataframe(read_data().style.hide_index(), height=360, use_container_width=True)
     # gb = GridOptionsBuilder.from_dataframe(read_data())
     # gb.configure_default_column(autoHeight=True)
     # gb.configure_grid_options(domLayout='autoHeight', autoSizeColumns=True)
