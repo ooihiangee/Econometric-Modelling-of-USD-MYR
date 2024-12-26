@@ -474,21 +474,6 @@ if selected == "Dashboard":
             # ACF & PACF Plots 
             st.markdown("<h2 style='text-align: center;'>ACF & PACF Plots</h2>", unsafe_allow_html=True)
             acf_pacf_plot(selected_variable)
-                
-        # # Dropdown for selecting a variable
-        # selected_variable = st.selectbox("", complete_df.columns)
-        
-        # # Time Series Plots
-        # st.markdown("<h2>Time Series Plots</h2>", unsafe_allow_html=True)
-        # line_plot(selected_variable)
-
-        # # Descriptive Statistics
-        # st.markdown("<h2>Time Series Plots</h2>", unsafe_allow_html=True)    
-        # descriptive_stats(selected_variable)
-
-        # # ACF and PACF Plots
-        # st.markdown("<h2>ACF and PACF Plots</h2>", unsafe_allow_html=True)
-        # acf_pacf_plot(selected_variable)
 
 ###############################################################################################################################################
 
@@ -499,15 +484,11 @@ if selected == "Forecasting Model":
     st.title("Time Series Forecasting")
     st.write("This section forecasts USD/MYR currency exchange rates using pre-trained models on historical monthly data of macroeconomic factors with lagged features.")  
     
-    # st.info(f"""1. Please make sure you have at least 5 months observation points.           
-    #         2. To follow the naming conventions of each column correcly.  
-    #          """)
-    
     # Steps to Follow
     with st.expander(r"$\textsf{\Large Steps to Follow}$", expanded=True):
         st.markdown("""
         1. **Choose the Forecast Horizon**: Select the number of months you want to forecast.
-        2. **Upload Data**: Upload your CSV file with at least 5 months observation points of the macroeconomic factors.
+        2. **Upload Data**: Upload your CSV file with at least 24 months observation points of the macroeconomic factors.
         """)
 
     # What the App Will Do Next
@@ -530,43 +511,43 @@ if selected == "Forecasting Model":
     st.subheader("Upload Your Time Series Data")
     uploaded_file = st.file_uploader("Upload CSV File (Date, Value)", type=["csv"])
 
-    # if uploaded_file:
+    if uploaded_file:
 
-    #     # Load and display data
-    #     data_load_state = st.text('Loading data...')    
-    #     data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
-    #     data_load_state.text('Loading data... done!')
-    #     st.write("Uploaded Data:")
-    #     st.dataframe(data, height=210, use_container_width=True)
+        # Load and display data
+        data_load_state = st.text('Loading data...')    
+        data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
+        data_load_state.text('Loading data... done!')
+        st.write("Uploaded Data:")
+        st.dataframe(data, height=210, use_container_width=True)
 
-    #     # Ensure every required column exists
-    #     required_columns = ['ER', 'CRUDE', 'DJ', 'KLCI', 'EXPMY', 'IMPMY', 'IPIMY', 'CPIMY', 'M1MY', 'M2MY', 'OPR', 'EXPUS', 'IMPUS', 'IPIUS', 'CPIUS', 'M1US', 'M2US', 'FFER']
+        # Ensure every required column exists
+        required_columns = ['ER', 'CRUDE', 'DJ', 'KLCI', 'EXPMY', 'IMPMY', 'IPIMY', 'CPIMY', 'M1MY', 'M2MY', 'OPR', 'EXPUS', 'IMPUS', 'IPIUS', 'CPIUS', 'M1US', 'M2US', 'FFER']
         
-    #     # Find missing columns
-    #     missing_columns = [col for col in required_columns if col not in data.columns]
+        # Find missing columns
+        missing_columns = [col for col in required_columns if col not in data.columns]
 
-    #     if missing_columns:
-    #         missing_columns_str = ", ".join(missing_columns)
-    #         st.error(f"The following required columns are missing from the CSV file: {missing_columns_str}")
-    #     else:
-    #         st.success("All required columns are present in the CSV file.")
+        if missing_columns:
+            missing_columns_str = ", ".join(missing_columns)
+            st.error(f"The following required columns are missing from the CSV file: {missing_columns_str}")
+        else:
+            st.success("All required columns are present in the CSV file.")
 
-    #         # Parallel processing to fit ARIMA models and forecast
-    #         data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
+            # Parallel processing to fit ARIMA models and forecast
+            data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
 
-    #         results = Parallel(n_jobs=-1)(
-    #             delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
-    #         )
+            results = Parallel(n_jobs=-1)(
+                delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
+            )
 
-    #         # Convert the results into a DataFrame
-    #         forecast_dict = {col: forecast for col, forecast in results}
-    #         forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-    #             start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
-    #         ))
+            # Convert the results into a DataFrame
+            forecast_dict = {col: forecast for col, forecast in results}
+            forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
+                start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
+            ))
 
-    #         data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
+            data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
 
-    #         st.dataframe(data, height=210, use_container_width=True)
+            st.dataframe(data, height=210, use_container_width=True)
 
     #         # Log transform the data
     #         st.write(f"Log-transforming the data...")
