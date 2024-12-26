@@ -683,29 +683,48 @@ if selected == "Forecasting Model":
 if selected == "Source Codes":
 
     st.title("Github Codes")
+    st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
 
+    st.markdown("""
+    **Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors**
+
+    This GitHub repository includes:
+    - Pre-trained model files (`.pkl`) for efficient deployment.
+    - A Jupyter Notebook detailing the entire workflow from data aggregation to evaluation.
+    - A Streamlit script for deploying the web application.
+                
+    It contains the comprehensive source code and resources for analysing the relationship between USD/MYR currency exchange rates and key macroeconomic factors. It is organised into the following components:
+
+    1. **Data Collection**  
+    Scripts and methodologies for gathering macroeconomic and exchange rate data.
+
+    2. **Data Preprocessing**  
+    Aggregate and merge raw data to ensure consistency.
+
+    3. **Data Cleaning**  
+    Steps to refine and clean the dataset for more accurate analysis.
+
+    4. **Data Transformation**  
+    Log transformations, differencing and introduction of lag features to increase the predictive power of the models.
+
+    5. **Exploratory Data Analysis (EDA)**  
+    Insights into the time series data through statistical summaries and visualisations.
+
+    6. **Modeling and Evaluation**  
+    Implementation of econometric and machine learning models (e.g., ARDL, Random Forest, XGBoost, LSTM) to analyse the relationships, along with model evaluation.
+
+    8. **Streamlit Application Script**  
+    A user-friendly web application built with Streamlit for interactive analysis and forecasting.  
+    """)
+
+    # nb = read_ipynb('C:/Users/ooihi/Downloads/machine learning for time series data in Python.ipynb')
+    # nb.display()
     # st.title("Jupyterlite in Streamlit")
     # st.sidebar.header("Configuration")
     # components.iframe(
     #     "https://jupyterlite.github.io/demo/repl/index.html?kernel=python&toolbar=1",
     #     height=500
     # )
-
-    st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
-    st.markdown("""
-    The github repostory contains the source codes for the following:
-    a. Data Collection
-    b. Data Preprocessing
-    c. Data Cleaning
-    d. Data Transformation
-    e. Data Exploration
-    f. Data Visualization
-    g. Data Modelling
-    h. Streamlit App Development
-        """)
-
-    # nb = read_ipynb('C:/Users/ooihi/Downloads/machine learning for time series data in Python.ipynb')
-    # nb.display()
 
 ###############################################################################################################################################
 
