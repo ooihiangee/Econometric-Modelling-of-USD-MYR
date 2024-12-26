@@ -1,15 +1,31 @@
-numpy>=1.19
+# Core Libraries
+numpy>=1.21.2
 scipy>=1.3.3
-pmdarima==2.0.3
 pandas
 matplotlib
 seaborn
 altair
 plotly
-streamlit
+
+# Streamlit and Related Extensions
+streamlit==1.41.1
 streamlit-option-menu
 streamlit-aggrid
 pygwalker==0.4.9.13
-statsmodels
+
+# Statistical and Machine Learning Libraries
+pmdarima==2.0.3
+statsmodels>=0.13.2
+scikit-learn>=0.22
+joblib>=0.11
+Cython>=0.29
+
+# Database
+peewee>=3.17.8
+
+# Data Sources
 yfinance
-joblib
+
+# Miscellaneous
+urllib3
+setuptools>=38.6.0
