@@ -408,7 +408,7 @@ if selected == "About":
    
     # Data Dictionary
     st.caption('**Table 1.** Data Dictionary.')
-    st.dataframe(data_dict().style.hide_index(), height=360, use_container_width=True)
+    st.dataframe(data_dict(), height=360, use_container_width=True)
     # AgGrid(data_dict(), height=560)
 
     # Data Points   
