@@ -21,7 +21,6 @@ from streamlit_option_menu import option_menu
 from st_aggrid import AgGrid
 from pygwalker.api.streamlit import StreamlitRenderer
 import streamlit.components.v1 as components
-from strimlitbook.strimlitbook import read_ipynb
 
 # Time Series and Econometrics
 from statsmodels.tsa.seasonal import seasonal_decompose
@@ -715,6 +714,17 @@ if selected == "Source Codes":
     # )
 
     st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
+    st.markdown("""
+        The github repostory contains the source codes for the following:
+        a. Data Collection
+        b. Data Preprocessing
+        c. Data Cleaning
+        d. Data Transformation
+        e. Data Exploration
+        f. Data Visualization
+        g. Data Modelling
+        h. Streamlit App Development
+        """)
 
     # nb = read_ipynb('C:/Users/ooihi/Downloads/machine learning for time series data in Python.ipynb')
     # nb.display()
