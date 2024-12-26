@@ -693,15 +693,15 @@ if selected == "Source Codes":
 
     st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
     st.markdown("""
-        The github repostory contains the source codes for the following:
-        a. Data Collection
-        b. Data Preprocessing
-        c. Data Cleaning
-        d. Data Transformation
-        e. Data Exploration
-        f. Data Visualization
-        g. Data Modelling
-        h. Streamlit App Development
+    The github repostory contains the source codes for the following:
+    a. Data Collection
+    b. Data Preprocessing
+    c. Data Cleaning
+    d. Data Transformation
+    e. Data Exploration
+    f. Data Visualization
+    g. Data Modelling
+    h. Streamlit App Development
         """)
 
     # nb = read_ipynb('C:/Users/ooihi/Downloads/machine learning for time series data in Python.ipynb')
