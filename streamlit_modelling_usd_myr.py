@@ -414,11 +414,12 @@ if selected == "About":
     # st.caption('**Table 2.** Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.')
     # AgGrid(read_data(displayDate=True), height=350)
     st.caption("**Table 2. Time Series Data**")
-    gb = GridOptionsBuilder.from_dataframe(read_data())
-    gb.configure_default_column(autoHeight=True)
-    gb.configure_grid_options(domLayout='autoHeight', autoSizeColumns=True)
-    grid_options = gb.build()
-    AgGrid(read_data(displayDate=True), gridOptions=grid_options, height=300)
+    st.dataframe(read_data(), height=560, use_container_width=True)
+    # gb = GridOptionsBuilder.from_dataframe(read_data())
+    # gb.configure_default_column(autoHeight=True)
+    # gb.configure_grid_options(domLayout='autoHeight', autoSizeColumns=True)
+    # grid_options = gb.build()
+    # AgGrid(read_data(displayDate=True), gridOptions=grid_options, height=300)
 
     # References
     st.markdown("<h3>References</h3>", unsafe_allow_html=True)
