@@ -291,9 +291,6 @@ def seasonal_decomposition(selected_variable):
 
 @st.cache_resource
 
-def load_rf_model():
-    return joblib.load("random_forest_model.pkl")
-
 def create_lagged_features(df, num_lags=3):
     for col in df.columns:
         for lag in range(1, num_lags + 1):
@@ -535,15 +532,22 @@ if selected == "Forecasting Model":
             # Parallel processing to fit ARIMA models and forecast
             data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
 
-            results = Parallel(n_jobs=-1)(
-                delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
-            )
+            # Initialize an empty dictionary to store forecasts
+            forecast_dict = {}
+
+            # Sequential processing to fit ARIMA models and forecast
+            for col in complete_df.columns:
+                forecast_dict[col] = fit_and_forecast(complete_df[col], col)
 
             # Convert the results into a DataFrame
-            forecast_dict = {col: forecast for col, forecast in results}
-            forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-                start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
-            ))
+            forecast_df = pd.DataFrame(
+                forecast_dict,
+                index=pd.date_range(
+                    start=complete_df.index[-1] + pd.offsets.MonthBegin(1),
+                    periods=12,
+                    freq='MS'
+                )
+            )
 
             data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
 
@@ -892,3 +896,13 @@ if selected == "UAT":
             # fig.add_trace(go.Scatter(x=forecast_df["Date"], y=forecast_df["Forecasted Value"],
             #                         mode='lines+markers', name="Forecasted Data"))
             # st.plotly_chart(fig, use_container_width=True)
+
+            # results = Parallel(n_jobs=-1)(
+            #     delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
+            # )
+
+            # # Convert the results into a DataFrame
+            # forecast_dict = {col: forecast for col, forecast in results}
+            # forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
+            #     start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
+            # ))
