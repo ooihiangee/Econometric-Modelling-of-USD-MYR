@@ -408,12 +408,11 @@ if selected == "About":
     
     # Data Dictionary
     st.caption('**Table 1.** Data Dictionary.')
-    data_dict = data_dict().set_index('No.', inplace=True)
-    st.dataframe(data_dict, height=360, use_container_width=True)
+    st.dataframe(data_dict(), height=360, use_container_width=True, hide_index=True)
     
     # Time Series Data
     st.caption("**Table 2. Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.**")
-    st.dataframe(read_data(), height=360, use_container_width=True)
+    st.dataframe(read_data(), height=360, use_container_width=True, hide_index=True)
 
     # References
     st.markdown("<h3>References</h3>", unsafe_allow_html=True)
