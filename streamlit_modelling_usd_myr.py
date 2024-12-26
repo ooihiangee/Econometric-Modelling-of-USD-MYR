@@ -26,7 +26,7 @@ import streamlit.components.v1 as components
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 import statsmodels.api as sm
-from pmdarima import auto_arima
+# from pmdarima import auto_arima
 
 # Financial Data
 import yfinance as yf
@@ -530,174 +530,174 @@ if selected == "Forecasting Model":
     st.subheader("Upload Your Time Series Data")
     uploaded_file = st.file_uploader("Upload CSV File (Date, Value)", type=["csv"])
 
-    if uploaded_file:
+    # if uploaded_file:
 
-        # Load and display data
-        data_load_state = st.text('Loading data...')    
-        data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
-        data_load_state.text('Loading data... done!')
-        st.write("Uploaded Data:")
-        st.dataframe(data, height=210, use_container_width=True)
+    #     # Load and display data
+    #     data_load_state = st.text('Loading data...')    
+    #     data = pd.read_csv(uploaded_file, parse_dates=["Date"], index_col="Date")
+    #     data_load_state.text('Loading data... done!')
+    #     st.write("Uploaded Data:")
+    #     st.dataframe(data, height=210, use_container_width=True)
 
-        # Ensure every required column exists
-        required_columns = ['ER', 'CRUDE', 'DJ', 'KLCI', 'EXPMY', 'IMPMY', 'IPIMY', 'CPIMY', 'M1MY', 'M2MY', 'OPR', 'EXPUS', 'IMPUS', 'IPIUS', 'CPIUS', 'M1US', 'M2US', 'FFER']
+    #     # Ensure every required column exists
+    #     required_columns = ['ER', 'CRUDE', 'DJ', 'KLCI', 'EXPMY', 'IMPMY', 'IPIMY', 'CPIMY', 'M1MY', 'M2MY', 'OPR', 'EXPUS', 'IMPUS', 'IPIUS', 'CPIUS', 'M1US', 'M2US', 'FFER']
         
-        # Find missing columns
-        missing_columns = [col for col in required_columns if col not in data.columns]
+    #     # Find missing columns
+    #     missing_columns = [col for col in required_columns if col not in data.columns]
 
-        if missing_columns:
-            missing_columns_str = ", ".join(missing_columns)
-            st.error(f"The following required columns are missing from the CSV file: {missing_columns_str}")
-        else:
-            st.success("All required columns are present in the CSV file.")
+    #     if missing_columns:
+    #         missing_columns_str = ", ".join(missing_columns)
+    #         st.error(f"The following required columns are missing from the CSV file: {missing_columns_str}")
+    #     else:
+    #         st.success("All required columns are present in the CSV file.")
 
-            # Parallel processing to fit ARIMA models and forecast
-            data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
+    #         # Parallel processing to fit ARIMA models and forecast
+    #         data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to 1 minute...')
 
-            results = Parallel(n_jobs=-1)(
-                delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
-            )
+    #         results = Parallel(n_jobs=-1)(
+    #             delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
+    #         )
 
-            # Convert the results into a DataFrame
-            forecast_dict = {col: forecast for col, forecast in results}
-            forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-                start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
-            ))
+    #         # Convert the results into a DataFrame
+    #         forecast_dict = {col: forecast for col, forecast in results}
+    #         forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
+    #             start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
+    #         ))
 
-            data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
+    #         data = pd.concat([complete_df, forecast_df], axis=0, ignore_index=False) 
 
-            st.dataframe(data, height=210, use_container_width=True)
+    #         st.dataframe(data, height=210, use_container_width=True)
 
-            # Log transform the data
-            st.write(f"Log-transforming the data...")
-            data_log = np.log(data)
-            st.dataframe(data_log, height=210, use_container_width=True)
+    #         # Log transform the data
+    #         st.write(f"Log-transforming the data...")
+    #         data_log = np.log(data)
+    #         st.dataframe(data_log, height=210, use_container_width=True)
 
-            # Generate lagged features
-            st.write(f"First differencing the data...")
-            data_log_diff = data_log.diff().dropna()
-            st.dataframe(data_log_diff, height=210, use_container_width=True)
+    #         # Generate lagged features
+    #         st.write(f"First differencing the data...")
+    #         data_log_diff = data_log.diff().dropna()
+    #         st.dataframe(data_log_diff, height=210, use_container_width=True)
 
-            # Generate lagged features
-            st.write(f"Generating lagged features (up to 3 months)...")
-            data_with_lags = create_lagged_features(data_log_diff, num_lags=3)
-            st.dataframe(data_with_lags, height=210, use_container_width=True)
+    #         # Generate lagged features
+    #         st.write(f"Generating lagged features (up to 3 months)...")
+    #         data_with_lags = create_lagged_features(data_log_diff, num_lags=3)
+    #         st.dataframe(data_with_lags, height=210, use_container_width=True)
 
-            # Choose the segment of the dataframe to forecast
-            combined_df_to_forecast = data_with_lags.iloc[-forecast_period:]
+    #         # Choose the segment of the dataframe to forecast
+    #         combined_df_to_forecast = data_with_lags.iloc[-forecast_period:]
 
-            # -----Load ARDL Model----
-            # data_load_state = st.text('Loading ARDL model...')
-            # time.sleep(3)
+    #         # -----Load ARDL Model----
+    #         # data_load_state = st.text('Loading ARDL model...')
+    #         # time.sleep(3)
 
-            # -----Load SVM Model-----
-            data_load_state = st.text('Loading SVM model...')
-            loaded_model = joblib.load('best_svm_model.pkl') 
-            loaded_features = joblib.load('best_svm_features.pkl') 
+    #         # -----Load SVM Model-----
+    #         data_load_state = st.text('Loading SVM model...')
+    #         loaded_model = joblib.load('best_svm_model.pkl') 
+    #         loaded_features = joblib.load('best_svm_features.pkl') 
 
-            selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
-            selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
+    #         selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
+    #         selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
 
-            X_forecast_svm = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
-            y_forecast_svm = loaded_model.predict(X_forecast_svm) # Make predictions
+    #         X_forecast_svm = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
+    #         y_forecast_svm = loaded_model.predict(X_forecast_svm) # Make predictions
 
-            log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_svm)-1:-1].values  # Get the previous log values
-            log_ER_reverted_forecast = y_forecast_svm+ log_ER_previous
-            ER_forecast_svm = np.exp(log_ER_reverted_forecast)
+    #         log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_svm)-1:-1].values  # Get the previous log values
+    #         log_ER_reverted_forecast = y_forecast_svm+ log_ER_previous
+    #         ER_forecast_svm = np.exp(log_ER_reverted_forecast)
 
-            # -----Load Random Forest Model-----
-            data_load_state = st.text('Loading Random Forest model...')
-            loaded_model = joblib.load('best_rf_model.pkl') 
-            loaded_features = joblib.load('best_rf_features.pkl') 
+    #         # -----Load Random Forest Model-----
+    #         data_load_state = st.text('Loading Random Forest model...')
+    #         loaded_model = joblib.load('best_rf_model.pkl') 
+    #         loaded_features = joblib.load('best_rf_features.pkl') 
 
-            selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
-            selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
+    #         selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
+    #         selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
 
-            X_forecast_rf = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
-            y_forecast_rf = loaded_model.predict(X_forecast_rf) # Make predictions
+    #         X_forecast_rf = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
+    #         y_forecast_rf = loaded_model.predict(X_forecast_rf) # Make predictions
 
-            log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_rf)-1:-1].values  # Get the previous log values
-            log_ER_reverted_forecast = y_forecast_rf+ log_ER_previous
-            ER_forecast_rf = np.exp(log_ER_reverted_forecast) 
+    #         log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_rf)-1:-1].values  # Get the previous log values
+    #         log_ER_reverted_forecast = y_forecast_rf+ log_ER_previous
+    #         ER_forecast_rf = np.exp(log_ER_reverted_forecast) 
 
-            # -----Load XGBoost Model-----
-            data_load_state = st.text('Loading XGBoost model...')
-            loaded_model = joblib.load('best_xgb_model.pkl') 
-            loaded_features = joblib.load('best_xgb_features.pkl') 
+    #         # -----Load XGBoost Model-----
+    #         data_load_state = st.text('Loading XGBoost model...')
+    #         loaded_model = joblib.load('best_xgb_model.pkl') 
+    #         loaded_features = joblib.load('best_xgb_features.pkl') 
 
-            selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
-            selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
+    #         selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
+    #         selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
 
-            X_forecast_xgb = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
-            y_forecast_xgb = loaded_model.predict(X_forecast_xgb) # Make predictions
+    #         X_forecast_xgb = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
+    #         y_forecast_xgb = loaded_model.predict(X_forecast_xgb) # Make predictions
 
-            log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_xgb)-1:-1].values  # Get the previous log values
-            log_ER_reverted_forecast = y_forecast_xgb+ log_ER_previous
-            ER_forecast_xgb = np.exp(log_ER_reverted_forecast)  
+    #         log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_xgb)-1:-1].values  # Get the previous log values
+    #         log_ER_reverted_forecast = y_forecast_xgb+ log_ER_previous
+    #         ER_forecast_xgb = np.exp(log_ER_reverted_forecast)  
 
-            # Define the forecasted data
-            data = {
-                "SVM": ER_forecast_svm,
-                "RF": ER_forecast_rf,
-                "XGB": ER_forecast_xgb
-            }
+    #         # Define the forecasted data
+    #         data = {
+    #             "SVM": ER_forecast_svm,
+    #             "RF": ER_forecast_rf,
+    #             "XGB": ER_forecast_xgb
+    #         }
 
-            # Define the dates as the index
-            dates = pd.date_range(start=forecast_df.index[0], end=forecast_df.index[-1], freq="MS")
+    #         # Define the dates as the index
+    #         dates = pd.date_range(start=forecast_df.index[0], end=forecast_df.index[-1], freq="MS")
 
-            # Create the DataFrame
-            forecast_df = pd.DataFrame(data, index=dates)
-            forecast_df.index.name = "Date"
+    #         # Create the DataFrame
+    #         forecast_df = pd.DataFrame(data, index=dates)
+    #         forecast_df.index.name = "Date"
 
-            # Plot the forecast data
-            forecast_df.index.name = "Date"
-            forecast_df.reset_index(inplace=True)
+    #         # Plot the forecast data
+    #         forecast_df.index.name = "Date"
+    #         forecast_df.reset_index(inplace=True)
 
-            # Ensure Date is in datetime format
-            forecast_df["Date"] = pd.to_datetime(forecast_df["Date"])
+    #         # Ensure Date is in datetime format
+    #         forecast_df["Date"] = pd.to_datetime(forecast_df["Date"])
 
-            # Streamlit App
-            st.title("Forecasted USD/MYR Exchange Rates by Models")
+    #         # Streamlit App
+    #         st.title("Forecasted USD/MYR Exchange Rates by Models")
 
-            # Line Chart using Altair
-            chart = alt.Chart(forecast_df).transform_fold(
-                fold=["SVM", "RF", "XGB"],
-                as_=["Model", "Exchange Rate"]
-            ).mark_line(point=True).encode(
-                x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
-                y=alt.Y("Exchange Rate:Q", title="Exchange Rate (USD/MYR)", scale=alt.Scale(zero=False)),
-                color=alt.Color("Model:N", title="Model"),
-                tooltip=["Date:T", "Model:N", "Exchange Rate:Q"]
-            ).properties(
-                width=700,
-                height=400,
-                title="Forecasted Exchange Rates"
-            )
+    #         # Line Chart using Altair
+    #         chart = alt.Chart(forecast_df).transform_fold(
+    #             fold=["SVM", "RF", "XGB"],
+    #             as_=["Model", "Exchange Rate"]
+    #         ).mark_line(point=True).encode(
+    #             x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
+    #             y=alt.Y("Exchange Rate:Q", title="Exchange Rate (USD/MYR)", scale=alt.Scale(zero=False)),
+    #             color=alt.Color("Model:N", title="Model"),
+    #             tooltip=["Date:T", "Model:N", "Exchange Rate:Q"]
+    #         ).properties(
+    #             width=700,
+    #             height=400,
+    #             title="Forecasted Exchange Rates"
+    #         )
 
-            st.altair_chart(chart, use_container_width=True)
+    #         st.altair_chart(chart, use_container_width=True)
 
-            # Forecast Future Values
-            st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
+    #         # Forecast Future Values
+    #         st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
 
-            # # Prepare forecast dates
-            # last_date = data["Date"].iloc[-1]
-            # forecast_dates = [last_date + timedelta(days=30 * i) for i in range(1, forecast_period + 1)]
+    #         # # Prepare forecast dates
+    #         # last_date = data["Date"].iloc[-1]
+    #         # forecast_dates = [last_date + timedelta(days=30 * i) for i in range(1, forecast_period + 1)]
 
-            # # Display Results
-            # forecast_df = pd.DataFrame({"Date": forecast_dates, "Forecasted Value": predictions})
-            # st.write("Forecasted Values:")
-            # st.dataframe(forecast_df)
+    #         # # Display Results
+    #         # forecast_df = pd.DataFrame({"Date": forecast_dates, "Forecasted Value": predictions})
+    #         # st.write("Forecasted Values:")
+    #         # st.dataframe(forecast_df)
 
-            # # Plot Forecast
-            # st.subheader("Forecast Visualization")
-            # fig = go.Figure()
-            # fig.add_trace(go.Scatter(x=data["Date"], y=data["value"], mode='lines+markers', name="Historical Data"))
-            # fig.add_trace(go.Scatter(x=forecast_df["Date"], y=forecast_df["Forecasted Value"],
-            #                         mode='lines+markers', name="Forecasted Data"))
-            # st.plotly_chart(fig, use_container_width=True)
+    #         # # Plot Forecast
+    #         # st.subheader("Forecast Visualization")
+    #         # fig = go.Figure()
+    #         # fig.add_trace(go.Scatter(x=data["Date"], y=data["value"], mode='lines+markers', name="Historical Data"))
+    #         # fig.add_trace(go.Scatter(x=forecast_df["Date"], y=forecast_df["Forecasted Value"],
+    #         #                         mode='lines+markers', name="Forecasted Data"))
+    #         # st.plotly_chart(fig, use_container_width=True)
 
-    else:
-        st.info("Please upload a CSV file to start forecasting.")
+    # else:
+    #     st.info("Please upload a CSV file to start forecasting.")
 
 ###############################################################################################################################################
 
