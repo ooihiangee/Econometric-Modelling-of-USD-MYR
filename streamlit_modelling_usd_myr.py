@@ -18,7 +18,7 @@ from plotly.subplots import make_subplots
 # Streamlit and Interactive Visualisation
 import streamlit as st
 from streamlit_option_menu import option_menu
-from st_aggrid import AgGrid
+from st_aggrid import AgGrid, GridOptionsBuilder
 from pygwalker.api.streamlit import StreamlitRenderer
 import streamlit.components.v1 as components
 
@@ -411,8 +411,14 @@ if selected == "About":
     AgGrid(data_dict(), height=560)
 
     # Data Points   
-    st.caption('**Table 2.** Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.')
-    AgGrid(read_data(displayDate=True), height=350)
+    # st.caption('**Table 2.** Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.')
+    # AgGrid(read_data(displayDate=True), height=350)
+    st.caption("**Table 2. Time Series Data**")
+    gb = GridOptionsBuilder.from_dataframe(read_data())
+    gb.configure_default_column(autoHeight=True)
+    gb.configure_grid_options(domLayout='autoHeight', autoSizeColumns=True)
+    grid_options = gb.build()
+    AgGrid(read_data(displayDate=True), gridOptions=grid_options, height=300)
 
     # References
     st.markdown("<h3>References</h3>", unsafe_allow_html=True)
