@@ -14,7 +14,7 @@ streamlit-aggrid
 pygwalker==0.4.9.13
 
 # Statistical and Machine Learning Libraries
-pmdarima==2.0.3
+pmdarima==2.0.3 --only-binary :all:
 statsmodels>=0.13.2
 scikit-learn>=0.22
 joblib>=0.11
