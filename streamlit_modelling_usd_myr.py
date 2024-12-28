@@ -714,7 +714,7 @@ if selected == "Source Codes":
             color: black;  /* Set font color to black by default */
             padding: 10px 20px;
             text-align: center;
-            text-decoration: none;  /* Remove underline */
+            text-decoration: none !important;  /* Remove underline */
             display: inline-block;
             font-size: 16px;
             border-radius: 5px;
@@ -727,6 +727,7 @@ if selected == "Source Codes":
     </style>
     <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" class="github-button">Visit my GitHub Repository</a>
     """, unsafe_allow_html=True)
+
 
     st.markdown("""
     This GitHub repository includes:
