@@ -25,6 +25,8 @@ import streamlit.components.v1 as components
 # Time Series and Econometrics
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
 import statsmodels.api as sm
 from pmdarima import auto_arima
 
@@ -300,13 +302,50 @@ def create_lagged_features(df, num_lags=3):
     df.dropna(inplace=True)
     return df
 
-def fit_and_forecast(series, column_name, n_periods):
-    print(f"Processing {column_name}")
-    model = auto_arima(series, seasonal=True, m=12, stepwise=True, suppress_warnings=True, error_action='ignore')
-    forecast = model.predict(n_periods=n_periods)  
-    return column_name, forecast
+def ets_forecast(df, forecast_period):
 
-# Generate HTML for centered table
+    forecast_results = pd.DataFrame()
+
+    # Define a dictionary for the number of decimal places for each column
+    decimal_places_dict = {'ER': 16, 'CRUDE': 15, 'DJ': 12, 'KLCI': 13, 'EXPMY': 11, 'IMPMY': 12, 'IPIMY': 3, 'CPIMY': 1, 'M1MY': 11, 'M2MY': 10, 'OPR': 2, 'EXPUS': 5, 'IMPUS': 4, 'IPIUS': 4, 'CPIUS': 3, 'M1US': 1, 'M2US': 1, 'FFER': 2}
+
+    for column in df.columns:
+        
+        # Extract the time series
+        ts = df[column].dropna()
+        
+        has_trend = decomposition.trend is not None and decomposition.trend.dropna().std() > 0
+        has_seasonality = decomposition.seasonal is not None and decomposition.seasonal.dropna().std() > 0
+        
+        print(f"{column} - Trend: {has_trend}, Seasonality: {has_seasonality}")
+
+        # Fit ETS model
+        seasonal_type = 'add' if has_seasonality else None
+        model = ExponentialSmoothing(
+            ts,
+            trend='add' if has_trend else None,
+            seasonal=seasonal_type,
+            seasonal_periods=12 if has_seasonality else None
+        )
+        
+        fitted_model = model.fit()
+        
+        # Forecast for the next n months (1-12)
+        forecast = fitted_model.forecast(steps=forecast_period)
+
+        # Apply different rounding rules based on column
+        if column == 'OPR':  # to ensure 0.25 step requirement
+            forecast = round(forecast * 4) / 4
+
+        # Round the forecast based on the decimal places for each column
+        if column in decimal_places_dict:
+            decimal_places = decimal_places_dict[column]
+            forecast = forecast.round(decimal_places)
+
+        forecast_results[column] = forecast
+
+    return forecast_results
+
 def generate_centered_table_html(df):
     html = f"""
     <style>
@@ -540,24 +579,9 @@ if selected == "Forecasting Model":
             st.success("All required columns are present in the CSV file.")
 
             # Parallel processing to fit ARIMA models and forecast
-            data_load_state = st.text('Loading ARIMA model for the forecasting...it may take up to a few minutes...')
+            data_load_state = st.text('Loading ETS model for the forecasting...it may take up to a few minutes...')
 
-            # Initialize an empty dictionary to store forecasts
-            forecast_dict = {}
-
-            # Sequential processing to fit ARIMA models and forecast
-            for col in data.columns:
-                forecast_dict[col] = fit_and_forecast(data[col], col, forecast_period)
-
-            # Convert the results into a DataFrame
-            forecast_df = pd.DataFrame(
-                forecast_dict,
-                index=pd.date_range(
-                    start=data.index[-1] + pd.offsets.MonthBegin(1),
-                    periods=12,
-                    freq='MS'
-                )
-            )
+            forecast_df = ets_forecast(complete_df, forecast_period=forecast_period)
 
             data = pd.concat([data, forecast_df], axis=0, ignore_index=False) 
 
