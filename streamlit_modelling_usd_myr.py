@@ -397,8 +397,8 @@ st.info(
 
 # 1 = sidebar menu, 2 = horizontal menu, 3 = horizontal menu w/ custom menu
 selected = streamlit_menu(example = 2, 
-                          options=["About", "Dashboard", "Forecasting Model", "Source Codes", "UAT"],
-                          icons=["house", "bar-chart-fill", "bar-chart-steps", "file-earmark-medical-fill", "file-earmark-medical-fill"])
+                          options=["About", "Dashboard", "Forecasting Model", "Source Codes"],
+                          icons=["house", "bar-chart-fill", "bar-chart-steps", "file-earmark-medical-fill"])
 
 complete_df = read_data(displayDate=False)
 
@@ -706,12 +706,12 @@ if selected == "Forecasting Model":
 # Source Codes Page
 if selected == "Source Codes":
 
-    st.title("Github Codes")
-    st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
+    st.title("Github Codes - Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors")
+    # st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
 
+    st.markdown("[🚀 Check out my GitHub repository! 🚀](https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR)")
+    
     st.markdown("""
-    **Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors**
-
     This GitHub repository includes:
     - Pre-trained model files (`.pkl`) for efficient deployment.
     - A Jupyter Notebook detailing the entire workflow from data aggregation to evaluation.
@@ -738,224 +738,5 @@ if selected == "Source Codes":
     Implementation of econometric and machine learning models (e.g., ARDL, Random Forest, XGBoost, LSTM) to analyse the relationships, along with model evaluation.
 
     8. **Streamlit Application Script**  
-    A user-friendly web application built with Streamlit for interactive analysis and forecasting.  
+    Python script to built a user-friendly web application built with Streamlit for interactive analysis and forecasting.  
     """)
-
-    # nb = read_ipynb('C:/Users/ooihi/Downloads/machine learning for time series data in Python.ipynb')
-    # nb.display()
-    # st.title("Jupyterlite in Streamlit")
-    # st.sidebar.header("Configuration")
-    # components.iframe(
-    #     "https://jupyterlite.github.io/demo/repl/index.html?kernel=python&toolbar=1",
-    #     height=500
-    # )
-
-###############################################################################################################################################
-
-# UAT
-if selected == "UAT":
-
-    # Function to fit ARIMA and forecast for a single series
-    # def fit_and_forecast(series, column_name):
-    #     print(f"Processing {column_name}")
-    #     model = auto_arima(series, seasonal=True, m=12, stepwise=True, suppress_warnings=True, error_action='ignore')
-    #     forecast = model.predict(n_periods=12)  # Generate 12-month forecast
-    #     return column_name, forecast
-
-    # # Parallel processing to fit ARIMA models and forecast
-    # results = Parallel(n_jobs=-1)(
-    #     delayed(fit_and_forecast)(complete_df[col], col) for col in complete_df.columns
-    # )
-
-    # # Convert the results into a DataFrame
-    # forecast_dict = {col: forecast for col, forecast in results}
-    # forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-    #     start=complete_df.index[-1] + pd.offsets.MonthBegin(1), periods=12, freq='MS'
-    # ))
-
-    # # Load the saved Random Forest model and feature selector
-    # model = joblib.load("best_lgb_model.pkl")
-    # selector = joblib.load("best_lgb_features.pkl")
-
-    # # Streamlit app title
-    # st.title("Exchange Rate Forecasting App")
-
-    # # User input form
-    # st.header("Enter Macro-Economic Variables")
-    # num_features = selector.get_support(indices=True).shape[0]
-
-    # # Example: Assuming 5 macroeconomic features
-    # feature_inputs = []
-    # for i in range(num_features):
-    #     feature_value = st.number_input(f"Feature {i+1}", min_value=0.0, max_value=10000.0, step=0.1)
-    #     feature_inputs.append(feature_value)
-
-    # # Predict button
-    # if st.button("Forecast Exchange Rate"):
-    #     # Convert user inputs to a NumPy array and reshape for prediction
-    #     user_input_array = np.array(feature_inputs).reshape(1, -1)
-        
-    #     # Transform the input using the selector
-    #     transformed_input = selector.transform(user_input_array)
-        
-    #     # Predict the exchange rate
-    #     predicted_er = model.predict(transformed_input)
-        
-    #     # Display the result
-    #     st.subheader("Forecasted Exchange Rate")
-    #     st.write(f"The predicted exchange rate is: {predicted_er[0]:.2f}")
-
-    # st.sidebar.title("Navigation")
-    # options = st.sidebar.radio("Select a section:", ["Upload Data", "Data Preprocessing", "Modeling", "Evaluation", "Forecasting"])
-
-    # if options == "Upload Data":
-    #     st.title("Upload Data")
-    #     uploaded_file = st.file_uploader("Upload your CSV file here", type=["csv"])
-    #     if uploaded_file:
-    #         data = pd.read_csv(uploaded_file)
-    #         st.write("Dataset Preview:")
-    #         st.write(data)
-
-    # elif options == "Data Preprocessing":
-    #     st.title("Data Preprocessing")
-    #     if 'data' in locals():
-    #         st.write("Dataset Preview:")
-    #         st.write(data)
-    #         # Stationarity tests, scaling, and lagging options
-    #         st.write("Perform stationarity tests or preprocess data.")
-    #     else:
-    #         st.error("Upload a dataset first.")
-
-    # elif options == "Modeling":
-    #     st.title("Modeling")
-    #     if 'data' in locals():
-    #         st.write("Select features and target variable.")
-    #         X = st.multiselect("Select independent variables:", data.columns)
-    #         y = st.selectbox("Select dependent variable:", data.columns)
-    #         if X and y:
-    #             X_train, X_test, y_train, y_test = train_test_split(data[X], data[y], test_size=0.2, random_state=42)
-                
-    #             model_choice = st.selectbox("Choose a model:", ["Random Forest", "XGBoost"])
-    #             if model_choice == "Random Forest":
-    #                 n_estimators = st.slider("Number of trees:", 10, 500, 100)
-    #                 model = RandomForestRegressor(n_estimators=n_estimators, random_state=42)
-    #             elif model_choice == "XGBoost":
-    #                 learning_rate = st.slider("Learning rate:", 0.01, 0.3, 0.1)
-    #                 model = XGBRegressor(learning_rate=learning_rate, random_state=42)
-
-    #             if st.button("Train Model"):
-    #                 model.fit(X_train, y_train)
-    #                 st.success("Model trained successfully!")
-
-    # elif options == "Evaluation":
-    #     st.title("Evaluation")
-    #     if 'model' in locals() and 'X_test' in locals():
-    #         predictions = model.predict(X_test)
-    #         st.write("R-squared:", r2_score(y_test, predictions))
-    #         st.write("RMSE:", np.sqrt(mean_squared_error(y_test, predictions)))
-
-    #         # Plot actual vs predicted
-    #         fig, ax = plt.subplots()
-    #         ax.scatter(y_test, predictions)
-    #         ax.set_xlabel("Actual")
-    #         ax.set_ylabel("Predicted")
-    #         st.pyplot(fig)
-
-    # elif options == "Forecasting":
-    #     st.title("Forecasting")
-    #     # Include options for new data input and prediction
-    #     st.write("Coming Soon!")
-
-    START = "2015-01-01"
-    TODAY = date.today().strftime("%Y-%m-%d")
-
-    st.title('Stock Forecast App')
-
-    stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
-    selected_stock = st.selectbox('Select dataset for prediction', stocks)
-
-    n_years = st.slider('Years of prediction:', 1, 4)
-    period = n_years * 365
-
-    @st.cache_data
-    def load_data(ticker):
-        data = yf.download(ticker, START, TODAY)
-        data.reset_index(inplace=True)
-        return data
-
-    data_load_state = st.text('Loading data...')
-    data = load_data(selected_stock)
-    data_load_state.text('Loading data... done!')
-
-    st.subheader('Raw data')
-    st.write(data.tail())
-
-    # Plot raw data
-    def plot_raw_data():
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
-        fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
-        fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
-        st.plotly_chart(fig)
-        
-    plot_raw_data()
-
-    # Predict forecast with Prophet.
-    # df_train = data[['Date','Close']]
-    # df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
-
-    # m = Prophet()
-    # m.fit(df_train)
-    # future = m.make_future_dataframe(periods=period)
-    # forecast = m.predict(future)
-
-    # # Show and plot forecast
-    # st.subheader('Forecast data')
-    # st.write(forecast.tail())
-        
-    # st.write(f'Forecast plot for {n_years} years')
-    # fig1 = plot_plotly(m, forecast)
-    # st.plotly_chart(fig1)
-
-    # st.write("Forecast components")
-    # fig2 = m.plot_components(forecast)
-    # st.write(fig2)
-
-    # Archives
-    # AgGrid(data_dict(), height=560)
-    # Data Points   
-    # st.caption('**Table 2.** Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.')
-    # AgGrid(read_data(displayDate=True), height=350)
-    
-    # gb = GridOptionsBuilder.from_dataframe(read_data())
-    # gb.configure_default_column(autoHeight=True)
-    # gb.configure_grid_options(domLayout='autoHeight', autoSizeColumns=True)
-    # grid_options = gb.build()
-    # AgGrid(read_data(displayDate=True), gridOptions=grid_options, height=300)
-
-    # # Prepare forecast dates
-            # last_date = data["Date"].iloc[-1]
-            # forecast_dates = [last_date + timedelta(days=30 * i) for i in range(1, forecast_period + 1)]
-
-            # # Display Results
-            # forecast_df = pd.DataFrame({"Date": forecast_dates, "Forecasted Value": predictions})
-            # st.write("Forecasted Values:")
-            # st.dataframe(forecast_df)
-
-            # # Plot Forecast
-            # st.subheader("Forecast Visualization")
-            # fig = go.Figure()
-            # fig.add_trace(go.Scatter(x=data["Date"], y=data["value"], mode='lines+markers', name="Historical Data"))
-            # fig.add_trace(go.Scatter(x=forecast_df["Date"], y=forecast_df["Forecasted Value"],
-            #                         mode='lines+markers', name="Forecasted Data"))
-            # st.plotly_chart(fig, use_container_width=True)
-
-            # results = Parallel(n_jobs=-1)(
-            #     delayed(fit_and_forecast)(data[col], col, forecast_period) for col in data.columns
-            # )
-
-            # # Convert the results into a DataFrame
-            # forecast_dict = {col: forecast for col, forecast in results}
-            # forecast_df = pd.DataFrame(forecast_dict, index=pd.date_range(
-            #     start=data.index[-1] + pd.offsets.MonthBegin(1), periods=forecast_period, freq='MS'
-            # ))
