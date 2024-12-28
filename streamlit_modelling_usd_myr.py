@@ -708,26 +708,8 @@ if selected == "Source Codes":
     st.title("Source Codes")
  
     st.markdown("""
-    <style>
-        .github-button {
-            background-color: #4CAF50;
-            color: black;  /* Set font color to black by default */
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none !important;  /* Remove underline */
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .github-button:hover {
-            background-color: white;
-            color: black;
-        }
-    </style>
-    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" class="github-button">Visit my GitHub Repository</a>
+    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: black; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
     """, unsafe_allow_html=True)
-
 
     st.markdown("""
     This GitHub repository includes:
