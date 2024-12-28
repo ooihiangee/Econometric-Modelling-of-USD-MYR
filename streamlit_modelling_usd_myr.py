@@ -467,9 +467,8 @@ if selected == "About":
 # Dashboard Page
 if selected == "Dashboard":
 
-    # Display the DataFrame
-    # st.dataframe(complete_df)
-    # Additional expandable section for further details
+    # Title of the page
+    st.title('Interative Dashboard')
 
     with st.expander(r"$\textsf{\Large Playground}$", expanded=True):
         st.info("This section provides users flexibility to mingle with the data and visualise it.")
@@ -706,13 +705,27 @@ if selected == "Forecasting Model":
 # Source Codes Page
 if selected == "Source Codes":
 
-    st.title("Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors")
-    # st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
-
-    # st.markdown("[🚀 Check out my GitHub repository! 🚀](https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR)")
+    st.title("Source Codes")
+ 
     st.markdown("""
-    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
-""", unsafe_allow_html=True)
+    <style>
+        .github-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .github-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" class="github-button">Visit my GitHub Repository</a>
+    """, unsafe_allow_html=True)   
 
     st.markdown("""
     This GitHub repository includes:
