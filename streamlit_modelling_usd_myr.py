@@ -468,7 +468,7 @@ if selected == "About":
 if selected == "Dashboard":
 
     # Title of the page
-    st.title('Interative Dashboard')
+    st.title('Interactive Dashboard')
 
     with st.expander(r"$\textsf{\Large Playground}$", expanded=True):
         st.info("This section provides users flexibility to mingle with the data and visualise it.")
@@ -718,14 +718,16 @@ if selected == "Source Codes":
             display: inline-block;
             font-size: 16px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .github-button:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: white;
+            color: black;
         }
     </style>
     <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" class="github-button">Visit my GitHub Repository</a>
-    """, unsafe_allow_html=True)   
+    """, unsafe_allow_html=True)
+ 
 
     st.markdown("""
     This GitHub repository includes:
