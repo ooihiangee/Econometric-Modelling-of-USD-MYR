@@ -29,3 +29,6 @@ yfinance
 # Miscellaneous
 urllib3
 setuptools>=38.6.0
+
+# Models
+xgboost
