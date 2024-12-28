@@ -706,11 +706,14 @@ if selected == "Forecasting Model":
 # Source Codes Page
 if selected == "Source Codes":
 
-    st.title("Github Codes - Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors")
+    st.title("Econometric Modeling of USD/MYR Exchange Rates and Macroeconomic Factors")
     # st.write("https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR")
 
-    st.markdown("[🚀 Check out my GitHub repository! 🚀](https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR)")
-    
+    # st.markdown("[🚀 Check out my GitHub repository! 🚀](https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR)")
+    st.markdown("""
+    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
+""", unsafe_allow_html=True)
+
     st.markdown("""
     This GitHub repository includes:
     - Pre-trained model files (`.pkl`) for efficient deployment.
