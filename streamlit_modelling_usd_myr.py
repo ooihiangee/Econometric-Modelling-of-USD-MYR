@@ -578,7 +578,7 @@ if selected == "Forecasting Model":
             st.success("All required columns are present in the CSV file.")
 
             # Parallel processing to fit ARIMA models and forecast
-            data_load_state = st.text('Loading ETS model for the forecasting...it may take up to a few minutes...')
+            data_load_state = st.text('Loading ETS model for the forecasting...it may take up to a few seconds...')
 
             forecast_df = ets_forecast(complete_df, forecast_period=forecast_period)
 
@@ -710,7 +710,7 @@ if selected == "Source Codes":
     st.markdown("""
     <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: white; color: black; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
     """, unsafe_allow_html=True)
-    
+
     st.markdown("""
     This GitHub repository includes:
     - Pre-trained model files (`.pkl`) for efficient deployment.
