@@ -711,21 +711,29 @@ if selected == "Source Codes":
     # <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: white; color: black; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
     # """, unsafe_allow_html=True)
 
-    html_temp = """
-    <div style="text-align: center;">
-    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: white; color: black; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
-    </div>
+    st.markdown(""" 
     <style>
-    a {
-    transition: background-color 0.3s ease;
-    }
-    a:hover {
-    background-color: #f1f1f1;
-    }
-    </style>
-    """
+        .github-button {
+            background-color: white; 
+            color: black; 
+            padding: 10px 20px; 
+            text-align: center; 
+            text-decoration: none; 
+            display: inline-block; 
+            font-size: 16px; 
+            border-radius: 5px; 
+            transition: background-color 0.3s; /* Smooth transition */
+        }
 
-    st.markdown(html_temp, unsafe_allow_html=True)
+        .github-button:hover {
+            background-color: #f0f0f0; /* Change this to your desired hover color */
+        }
+    </style>
+
+    <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" class="github-button">
+        Visit my GitHub Repository
+    </a>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     This GitHub repository includes:
