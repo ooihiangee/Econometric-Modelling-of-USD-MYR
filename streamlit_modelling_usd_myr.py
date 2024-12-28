@@ -314,6 +314,8 @@ def ets_forecast(df, forecast_period):
         # Extract the time series
         ts = df[column].dropna()
         
+        decomposition = seasonal_decompose(ts, model='additive', period=12)
+        
         has_trend = decomposition.trend is not None and decomposition.trend.dropna().std() > 0
         has_seasonality = decomposition.seasonal is not None and decomposition.seasonal.dropna().std() > 0
         
