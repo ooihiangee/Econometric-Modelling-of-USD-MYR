@@ -710,11 +710,7 @@ if selected == "Source Codes":
     st.markdown("""
     <a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank" style="background-color: white; color: black; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px;">Visit my GitHub Repository</a>
     """, unsafe_allow_html=True)
-
-    if st.button("Visit my GitHub Repository"):
-        # Open the link in a new tab
-        st.markdown('<a href="https://github.com/ooihiangee/Econometric-Modelling-of-USD-MYR" target="_blank">Go to GitHub</a>', unsafe_allow_html=True)
-
+    
     st.markdown("""
     This GitHub repository includes:
     - Pre-trained model files (`.pkl`) for efficient deployment.
