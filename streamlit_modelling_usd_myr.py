@@ -403,11 +403,11 @@ if selected == "About":
     # Title of the page
     st.title('Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors')
 
-    # Path to your local image
+    # Path to the image
     image_path = 'pexels-pratikxox-1643052-4025825.jpg'
 
     # Display the image
-    st.image(image_path, caption='', use_column_width=True)
+    st.image(image_path, caption='', use_container_width=True, height=200)
 
     # Abstract
     st.markdown("<h3>Abstract</h3>", unsafe_allow_html=True)
