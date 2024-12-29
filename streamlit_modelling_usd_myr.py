@@ -407,7 +407,7 @@ if selected == "About":
     image_path = 'banner.png'
 
     # Display the image
-    st.image(image_path, caption='', use_container_width=True, height=200)
+    st.image(image_path, caption='', use_container_width=True)
 
     # Abstract
     st.markdown("<h3>Abstract</h3>", unsafe_allow_html=True)
