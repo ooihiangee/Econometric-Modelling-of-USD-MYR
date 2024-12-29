@@ -420,21 +420,20 @@ if selected == "About":
     * Understanding their sensitivity to changes assists policymakers in predicting future directions and assessing potential economic impacts.
     """)
 
-    # Problem Statement
-    st.markdown("<h3>Problem Statement</h3>", unsafe_allow_html=True)
+    # Limitations of Existing Research
+    st.markdown("<h3>Limitations of Existing Research</h3>", unsafe_allow_html=True)
     st.markdown("""
-    * **Limitations of Existing Research:**
-        * **Focus on Authors' Own Countries:**
-            * Even though many of the researchers come up with different approaches such as VAR model (Antwi et al., 2020), ARDL model (Munir & Iftikhar, 2023; Thevakumar & Jayathilaka, 2022) and deep learning models (Biswas et al., 2023) to examine the effect of macroeconomic factors on the currency exchange rates., they are focusing the studies on their own countries.
-        * **Use of Annual Data:**
-            * Several studies had been conducted in Malaysia (Mohamed et al., 2021; Shukri et al., 2021) to investigate the impact of economic factors on Malaysia's exchange rate volatility. However, these studies utilised annual data. 
-            * Studies utilising annual data may not effectively capture the fast-paced fluctuations in currency exchange rates.     
-        * **Data Obsolescence:** 
-            * (Biswas et al., 2023) used data until 2019 and (Ohaegbulem & Iheaka, 2024) used data until 2021 only in their studies.
-            * The outdated data may limit the relevance of their findings to current economic conditions. 
-        * **Lack of Bilateral Analysis:**
-            * There is a lack of studies that analyse the relationship between the macroeconomic factors of both the home country and the foreign country.
-                
+    * **Focus on Authors' Own Countries:**
+        * Even though many of the researchers come up with different approaches such as VAR model (Antwi et al., 2020), ARDL model (Munir & Iftikhar, 2023; Thevakumar & Jayathilaka, 2022) and deep learning models (Biswas et al., 2023) to examine the effect of macroeconomic factors on the currency exchange rates., they are focusing the studies on their own countries.
+    * **Use of Annual Data:**
+        * Several studies had been conducted in Malaysia (Mohamed et al., 2021; Shukri et al., 2021) to investigate the impact of economic factors on Malaysia's exchange rate volatility. However, these studies utilised annual data. 
+        * Studies utilising annual data may not effectively capture the fast-paced fluctuations in currency exchange rates.     
+    * **Data Obsolescence:** 
+        * (Biswas et al., 2023) used data until 2019 and (Ohaegbulem & Iheaka, 2024) used data until 2021 only in their studies.
+        * The outdated data may limit the relevance of their findings to current economic conditions. 
+    * **Lack of Bilateral Analysis:**
+        * There is a lack of studies that analyse the relationship between the macroeconomic factors of both the home country and the foreign country.
+            
     Thus, this study will focus the context mainly to Malaysia instead of other countries. In addition, this study aims to also utilise the most contemporary dataset from a set of both Malaysia and US macroeconomic factors to discern the determinants of both long-run and short-run dynamics of the Malaysia currency exchange rates over the time.
     """)
 
