@@ -402,12 +402,7 @@ if selected == "About":
 
     # Title of the page
     st.title('Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors')
-
-    # Author
-    st.markdown('''
-    **Ooi Hian Gee (17203457)** - *Master of Data Science*
-    ''')
-
+    
     # Abstract
     st.markdown("<h3>Abstract</h3>", unsafe_allow_html=True)
     st.info('''
