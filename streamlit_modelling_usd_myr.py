@@ -415,9 +415,9 @@ if selected == "About":
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
     st.markdown("""
-    * The currency exchange rate, facilitates the international trade of goods and services as well as  the transfer of capital. It indicates the external competitiveness of a country’s economy.
-    * Currency strength is directly dependent on the changes in the key macroeconomic indicators such as gross domestic product, main interest rate,  inflation, foreign exchange rate, unemployment, etc. 
-    * Gauging the sensitivity of currency exchange rates reacting to changes assists policymakers to predict their future direction and understand the potential impacts brought to the country’s economy.
+    * The currency exchange rate facilitates the international trade of goods and services as well as  the transfer of capital. It indicates the external competitiveness of a country’s economy.
+    * Currency strength is directly dependent on the changes in the key macroeconomic indicators such as gross domestic product, interest rate,  inflation, foreign exchange rate, unemployment, etc. 
+    * Understanding their sensitivity to changes assists policymakers in predicting future directions and assessing potential economic impacts.
     """)
 
     # Problem Statement
@@ -426,19 +426,16 @@ if selected == "About":
     * **Limitations of Existing Research:**
         * **Focus on Authors' Own Countries:**
             * Even though many of the researchers come up with different approaches such as VAR model (Antwi et al., 2020), ARDL model (Munir & Iftikhar, 2023; Thevakumar & Jayathilaka, 2022) and deep learning models (Biswas et al., 2023) to examine the effect of macroeconomic factors on the currency exchange rates., they are focusing the studies on their own countries.
-        * **Use of Annual Data:** 
-            * Studies utilising annual data may not effectively capture the fast-paced fluctuations in currency exchange rates. 
-            * Several studies had been conducted in Malaysia (Mohamed et al., 2021; Shukri et al., 2021) to investigate the impact of economic factors on Malaysia's exchange rate volatility. However, these studies utilised annual data
+        * **Use of Annual Data:**
+            * Several studies had been conducted in Malaysia (Mohamed et al., 2021; Shukri et al., 2021) to investigate the impact of economic factors on Malaysia's exchange rate volatility. However, these studies utilised annual data. 
+            * Studies utilising annual data may not effectively capture the fast-paced fluctuations in currency exchange rates.     
         * **Data Obsolescence:** 
-            * Many studies use outdated data which may limit the relevance of their findings to current economic conditions. 
-            * For instance, (Biswas et al., 2023) used data until 2019 and (Ohaegbulem & Iheaka, 2024) used data until 2021 only in their studies.
+            * (Biswas et al., 2023) used data until 2019 and (Ohaegbulem & Iheaka, 2024) used data until 2021 only in their studies.
+            * The outdated data may limit the relevance of their findings to current economic conditions. 
         * **Lack of Bilateral Analysis:**
             * There is a lack of studies that analyse the relationship between the macroeconomic factors of both the home country and the foreign country.
                 
-    * **Thus, this study will**
-        * **Focus on the Malaysian Context:** This study will prioritise the Malaysian context.
-        * **Utilise Latest Data:** This study will utilise the most contemporary macroeconomic factors from both Malaysia and the US.
-        * **Analyse Long-run and Short-run Dynamics:** This study aims to discern the determinants of both long-run and short-run dynamics of the USD/MYR exchange rates.
+    Thus, this study will focus the context mainly to Malaysia instead of other countries. In addition, this study aims to also utilise the most contemporary dataset from a set of both Malaysia and US macroeconomic factors to discern the determinants of both long-run and short-run dynamics of the Malaysia currency exchange rates over the time.
     """)
 
     # Data
