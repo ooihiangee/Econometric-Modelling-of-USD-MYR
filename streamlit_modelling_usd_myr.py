@@ -651,13 +651,29 @@ if selected == "Forecasting Model":
 
             log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_xgb)-1:-1].values  # Get the previous log values
             log_ER_reverted_forecast = y_forecast_xgb+ log_ER_previous
-            ER_forecast_xgb = np.exp(log_ER_reverted_forecast)  
+            ER_forecast_xgb = np.exp(log_ER_reverted_forecast)
+
+            # -----Load LightGBM Model-----
+            data_load_state = st.text('Loading LightGBM model...')
+            loaded_model = joblib.load('best_lgb_model.pkl') 
+            loaded_features = joblib.load('best_lgb_features.pkl') 
+
+            selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
+            selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
+
+            X_forecast_lgb = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
+            y_forecast_lgb = loaded_model.predict(X_forecast_lgb) # Make predictions
+
+            log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_lgb)-1:-1].values  # Get the previous log values
+            log_ER_reverted_forecast = y_forecast_lgb+ log_ER_previous
+            ER_forecast_lgb = np.exp(log_ER_reverted_forecast)  
 
             # Define the forecasted data
             data = {
                 "SVM": ER_forecast_svm,
                 "RF": ER_forecast_rf,
-                "XGB": ER_forecast_xgb
+                "XGB": ER_forecast_xgb,
+                "LightGBM": ER_forecast_lgb
             }
 
             # Define the dates as the index
