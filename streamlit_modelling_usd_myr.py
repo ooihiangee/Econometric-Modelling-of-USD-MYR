@@ -388,17 +388,10 @@ def generate_centered_table_html(df):
 # Streamlit UI - Set page configuration
 st.set_page_config(layout="wide")
 
-# FontAwesome icon for info
-info_icon = ":information_source:"
-
-st.info(
-    f"{info_icon} You can always reach me at hiangee@yahoo.com should you encounter any technical issues or have any feedback to make improvements to this app.",
-)
-
 # 1 = sidebar menu, 2 = horizontal menu, 3 = horizontal menu w/ custom menu
 selected = streamlit_menu(example = 2, 
-                          options=["About", "Dashboard", "Forecasting Model", "Source Codes"],
-                          icons=["house", "bar-chart-fill", "bar-chart-steps", "file-earmark-medical-fill"])
+                          options=["About", "Dashboard", "Forecasting Model", "Source Codes", "Contact Me"],
+                          icons=["house", "bar-chart-fill", "bar-chart-steps", "code", "person"])
 
 complete_df = read_data(displayDate=False)
 
@@ -775,3 +768,14 @@ if selected == "Source Codes":
     8. **Streamlit Application Script**  
     Python script to built a user-friendly web application built with Streamlit for interactive analysis and forecasting.  
     """)
+
+##############################################################################################################################################
+
+# Source Codes Page
+if selected == "Contact Me":
+
+    info_icon = ":information_source:"
+
+    st.info(
+        f"{info_icon} You can always reach me at hiangee@yahoo.com should you encounter any technical issues or have any feedback to make improvements to this app.",
+    )
