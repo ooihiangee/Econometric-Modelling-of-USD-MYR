@@ -33,4 +33,5 @@ setuptools>=38.6.0
 # Models
 xgboost
 lightgbm
+tensorflow
 keras
