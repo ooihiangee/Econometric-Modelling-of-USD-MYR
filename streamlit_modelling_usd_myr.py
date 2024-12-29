@@ -414,7 +414,7 @@ if selected == "About":
     
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
-    st.info("""
+    st.markdown("""
     The currency exchange rate, facilitates the international trade of goods and services as well as  the transfer of capital. It indicates the external competitiveness of a country’s economy.
     Currency strength is directly dependent on the changes in the minimum of the key macroeconomic indicators such as gross domestic product, main interest rate,  inflation, foreign exchange rate, unemployment, etc. 
     Gauging the sensitivity of currency exchange rates reacting to changes assists policymakers to predict their future direction and further understand the potential impacts brought to the country’s economy.
