@@ -449,6 +449,10 @@ if selected == "About":
     st.caption("**Table 2. Time Series Data of Macroeconomic Variables and USD/MYR Currency Exchange Rates.**")
     st.dataframe(read_data(), height=360, use_container_width=True, hide_index=True)
 
+    # Model Performance
+    st.markdown("<h3>Model Performance</h3>", unsafe_allow_html=True)
+    st.markdown("The model performance is evaluated based on the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), Mean Absolute Percentage Error (MAPE) and R-squared (R2). The model with the lowest error metrics is considered the best model for forecasting the USD/MYR currency exchange rates.")
+   
     # References
     st.markdown("<h3>References</h3>", unsafe_allow_html=True)
     st.markdown('''
