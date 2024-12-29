@@ -411,17 +411,10 @@ if selected == "About":
 
     # Display the image
     st.image(image_path, caption='', use_container_width=True)
-
-    # Abstract
-    st.markdown("<h3>Abstract</h3>", unsafe_allow_html=True)
-    st.info('''
-    Stability in a country’s currency exchange rates is extremely crucial as fluctuations in the exchange rates significantly impact the international trade, investment, debt, and a country’s overall economic health. The exchanges rates are always linked to a variety of internal and external factors, among them are what we call macroeconomic factors which include money supply, inflation rates, Industrial Production Index (IPI) and others. This research seeks to explore the underlying relationship between these macroeconomic variables and the currency exchange rate of Malaysian Ringgits (MYR) by leveraging latest available data up to the year of 2024 using different models. The motivation behind this research lies in the recognition that a thorough understanding of the relationships between macroeconomic variables and currency exchange rates can be beneficial for informed policymaking and budgeting. In view of Malaysia as a developing country where its economy is evolving by leap and bounds at the present, a comprehensive analysis becomes necessary.     ''')
-
-    st.markdown('**Keywords:** *monetary economics; bilateral analysis; predictive model; machine learning*')
     
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
-    st.markdown("""
+    st.info("""
     The currency exchange rate, facilitates the international trade of goods and services as well as  the transfer of capital. It indicates the external competitiveness of a country’s economy.
     Currency strength is directly dependent on the changes in the minimum of the key macroeconomic indicators such as gross domestic product, main interest rate,  inflation, foreign exchange rate, unemployment, etc. 
     Gauging the sensitivity of currency exchange rates reacting to changes assists policymakers to predict their future direction and further understand the potential impacts brought to the country’s economy.
