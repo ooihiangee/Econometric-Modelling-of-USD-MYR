@@ -401,7 +401,10 @@ complete_df = read_data(displayDate=False)
 if selected == "About":
 
     # Title of the page
-    st.title('Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors')
+    st.markdown(
+    "<h1 style='text-align: center;'>Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors</h1>",
+    unsafe_allow_html=True
+    )
 
     # Path to the image
     image_path = 'banner.png'
