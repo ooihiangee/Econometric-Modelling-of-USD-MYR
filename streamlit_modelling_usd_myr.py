@@ -666,14 +666,33 @@ if selected == "Forecasting Model":
 
             log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_lgb)-1:-1].values  # Get the previous log values
             log_ER_reverted_forecast = y_forecast_lgb+ log_ER_previous
-            ER_forecast_lgb = np.exp(log_ER_reverted_forecast)  
+            ER_forecast_lgb = np.exp(log_ER_reverted_forecast)
+
+            # -----Load LSTM Model-----
+            data_load_state = st.text('Loading LSTM model...')
+            loaded_model = joblib.load('best_lstm_model.pkl') 
+            loaded_features = joblib.load('best_lstm_features.pkl') 
+
+            selected_feature_indices = loaded_features.get_support(indices=True) # Retrieve the names of the selected features
+            selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices]
+
+            X_forecast_lstm = combined_df_to_forecast[selected_feature_names] # Select the relevant features from the combined dataframe
+            X_forecast_lstm = X_forecast_lstm.values.reshape((X_forecast_lstm.shape[0], 1, X_forecast_lstm.shape[1]))
+
+            y_forecast_lstm = loaded_model.predict(X_forecast_lstm)
+            y_forecast_lstm = y_forecast_lstm.flatten() # Make predictions
+
+            log_ER_previous = np.log(complete_df['ER']).iloc[-len(y_forecast_lstm)-1:-1].values  # Get the previous log values
+            log_ER_reverted_forecast = y_forecast_lstm + log_ER_previous
+            ER_forecast_lstm = np.exp(log_ER_reverted_forecast) 
 
             # Define the forecasted data
             data = {
                 "SVM": ER_forecast_svm,
                 "RF": ER_forecast_rf,
                 "XGB": ER_forecast_xgb,
-                "LightGBM": ER_forecast_lgb
+                "LightGBM": ER_forecast_lgb,
+                "LSTM": ER_forecast_lstm
             }
 
             # Define the dates as the index
@@ -695,7 +714,7 @@ if selected == "Forecasting Model":
 
             # Line Chart using Altair
             chart = alt.Chart(forecast_df).transform_fold(
-                fold=["SVM", "RF", "XGB"],
+                fold=["SVM", "RF", "XGB", "LightGBM", "LSTM"],
                 as_=["Model", "Exchange Rate"]
             ).mark_line(point=True).encode(
                 x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
