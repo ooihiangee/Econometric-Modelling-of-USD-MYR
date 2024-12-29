@@ -404,7 +404,7 @@ if selected == "About":
     st.title('Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors')
 
     # Path to the image
-    image_path = 'pexels-pratikxox-1643052-4025825.jpg'
+    image_path = 'banner.png'
 
     # Display the image
     st.image(image_path, caption='', use_container_width=True, height=200)
