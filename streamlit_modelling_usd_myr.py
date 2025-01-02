@@ -832,6 +832,6 @@ if selected == "Contact Me":
     if st.checkbox("Show previous feedback"):
         if os.path.isfile('feedback.csv'):
             previous_feedback = pd.read_csv('feedback.csv')
-            st.dataframe(previous_feedback, use_container_width=True, hide_index=True)
+            st.write(previous_feedback)
         else:
             st.write("No feedback received yet.")
