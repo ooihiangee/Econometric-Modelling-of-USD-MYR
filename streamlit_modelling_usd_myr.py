@@ -811,7 +811,6 @@ if selected == "Contact Me":
     # Create a form for user feedback
     with st.form(key='feedback_form'):
         name = st.text_input("Your Name")
-        email = st.text_input("Your Email")
         feedback = st.text_area("Your Feedback", height=150)
         
         submit_button = st.form_submit_button("Submit Feedback")
