@@ -834,8 +834,7 @@ if selected == "Contact Me":
             previous_feedback = pd.read_csv('feedback.csv')
             previous_feedback.reset_index(drop=True, inplace=True)
             previous_feedback.index = range(1, len(previous_feedback) + 1)
-            styled_df = previous_feedback.style.set_table_attributes('style="width:100%; white-space: pre-wrap;"')
-            st.write(styled_df)
+            st.table(previous_feedback)
             # st.write(previous_feedback)
         else:
             st.write("No feedback received yet.")
