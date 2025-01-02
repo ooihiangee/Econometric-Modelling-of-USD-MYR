@@ -790,51 +790,48 @@ if selected == "Contact Me":
         f"{info_icon} You can always reach me at hiangee@yahoo.com should you encounter any technical issues or have any feedback to make improvements to this app.",
     )
 
-import streamlit as st
-import pandas as pd
-import os
+    # Function to save feedback to a CSV file
+    def save_feedback(feedback_data):
 
-# Function to save feedback to a CSV file
-def save_feedback(feedback_data):
-    # Check if the feedback file exists, if not create it
-    if not os.path.isfile('feedback.csv'):
-        # Create a new DataFrame and save it to CSV
-        df = pd.DataFrame(columns=['Name', 'Email', 'Feedback'])
-        df.to_csv('feedback.csv', index=False)
+        # Check if the feedback file exists, if not create it
+        if not os.path.isfile('feedback.csv'):
+            # Create a new DataFrame and save it to CSV
+            df = pd.DataFrame(columns=['Name', 'Email', 'Feedback'])
+            df.to_csv('feedback.csv', index=False)
 
-    # Append the new feedback to the existing CSV file
-    with open('feedback.csv', 'a') as f:
-        feedback_data.to_csv(f, header=False, index=False)
+        # Append the new feedback to the existing CSV file
+        with open('feedback.csv', 'a') as f:
+            feedback_data.to_csv(f, header=False, index=False)
 
-    # Streamlit app layout
-    st.title("User Feedback Form")
+        # Streamlit app layout
+        st.title("User Feedback Form")
 
-    # Create a form for user feedback
-    with st.form(key='feedback_form'):
-        name = st.text_input("Your Name")
-        email = st.text_input("Your Email")
-        feedback = st.text_area("Your Feedback", height=150)
-        
-        submit_button = st.form_submit_button("Submit Feedback")
+        # Create a form for user feedback
+        with st.form(key='feedback_form'):
+            name = st.text_input("Your Name")
+            email = st.text_input("Your Email")
+            feedback = st.text_area("Your Feedback", height=150)
+            
+            submit_button = st.form_submit_button("Submit Feedback")
 
-        if submit_button:
-            # Create a DataFrame from the input data
-            feedback_data = pd.DataFrame({
-                'Name': [name],
-                'Email': [email],
-                'Feedback': [feedback]
-            })
+            if submit_button:
+                # Create a DataFrame from the input data
+                feedback_data = pd.DataFrame({
+                    'Name': [name],
+                    'Email': [email],
+                    'Feedback': [feedback]
+                })
 
-            # Save the feedback
-            save_feedback(feedback_data)
+                # Save the feedback
+                save_feedback(feedback_data)
 
-            # Display a success message
-            st.success("Thank you for your feedback!")
+                # Display a success message
+                st.success("Thank you for your feedback!")
 
-    # Optional: Display existing feedback (for admin view)
-    if st.checkbox("Show previous feedback"):
-        if os.path.isfile('feedback.csv'):
-            previous_feedback = pd.read_csv('feedback.csv')
-            st.write(previous_feedback)
-        else:
-            st.write("No feedback received yet.")
+        # Optional: Display existing feedback (for admin view)
+        if st.checkbox("Show previous feedback"):
+            if os.path.isfile('feedback.csv'):
+                previous_feedback = pd.read_csv('feedback.csv')
+                st.write(previous_feedback)
+            else:
+                st.write("No feedback received yet.")
