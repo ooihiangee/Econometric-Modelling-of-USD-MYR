@@ -469,6 +469,7 @@ if selected == "About":
     performance_data_df = pd.DataFrame(performance_data)
 
     # Display the DataFrame
+    st.write(performance_data_df)
     st.dataframe(performance_data_df, height=360, use_container_width=True, hide_index=True)
 
     # References
