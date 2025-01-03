@@ -408,6 +408,7 @@ if selected == "About":
 
     # Path to the image
     image_path = 'banner.png'
+    image_path = 'Econometric Modelling of USDMYR Exchange Rate Dynamics and Key Macroeconomic Factors.jpg'
 
     # Display the image
     st.image(image_path, caption='', use_container_width=True)
