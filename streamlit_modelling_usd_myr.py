@@ -631,8 +631,8 @@ if selected == "Forecasting Model":
 
             # -----Load SVM Model-----
             data_load_state = st.text('Loading SVM model...')
-            loaded_model = joblib.load('best_svm_model.pkl') 
-            loaded_features = joblib.load('best_svm_features.pkl') 
+            loaded_model = joblib.load('pkl/best_svm_model.pkl') 
+            loaded_features = joblib.load('pkl/best_svm_features.pkl') 
 
             selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
             selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
@@ -646,8 +646,8 @@ if selected == "Forecasting Model":
 
             # -----Load Random Forest Model-----
             data_load_state = st.text('Loading Random Forest model...')
-            loaded_model = joblib.load('best_rf_model.pkl') 
-            loaded_features = joblib.load('best_rf_features.pkl') 
+            loaded_model = joblib.load('pkl/best_rf_model.pkl') 
+            loaded_features = joblib.load('pkl/best_rf_features.pkl') 
 
             selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
             selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
@@ -661,8 +661,8 @@ if selected == "Forecasting Model":
 
             # -----Load XGBoost Model-----
             data_load_state = st.text('Loading XGBoost model...')
-            loaded_model = joblib.load('best_xgb_model.pkl') 
-            loaded_features = joblib.load('best_xgb_features.pkl') 
+            loaded_model = joblib.load('pkl/best_xgb_model.pkl') 
+            loaded_features = joblib.load('pkl/best_xgb_features.pkl') 
 
             selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
             selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
@@ -676,8 +676,8 @@ if selected == "Forecasting Model":
 
             # -----Load LightGBM Model-----
             data_load_state = st.text('Loading LightGBM model...')
-            loaded_model = joblib.load('best_lgb_model.pkl') 
-            loaded_features = joblib.load('best_lgb_features.pkl') 
+            loaded_model = joblib.load('pkl/best_lgb_model.pkl') 
+            loaded_features = joblib.load('pkl/best_lgb_features.pkl') 
 
             selected_feature_indices = loaded_features.get_support(indices=True)  # Retrieve the names of the selected features
             selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices] 
@@ -691,8 +691,8 @@ if selected == "Forecasting Model":
 
             # -----Load LSTM Model-----
             data_load_state = st.text('Loading LSTM model...')
-            loaded_model = joblib.load('best_lstm_model.pkl') 
-            loaded_features = joblib.load('best_lstm_features.pkl') 
+            loaded_model = joblib.load('pkl/best_lstm_model.pkl') 
+            loaded_features = joblib.load('pkl/best_lstm_features.pkl') 
 
             selected_feature_indices = loaded_features.get_support(indices=True) # Retrieve the names of the selected features
             selected_feature_names = combined_df_to_forecast.columns[selected_feature_indices]
