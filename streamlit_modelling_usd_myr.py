@@ -414,18 +414,17 @@ if selected == "About":
 
     # Slides
     html_code = """
-    <div style="position: relative; width: 80%; height: 0; padding-top: 46.2500%;
-    padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+    <div style="position: relative; width: 80%; height: 50%; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin: auto; overflow: hidden;
     border-radius: 8px; will-change: transform;">
-    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-        src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-    </iframe>
+        <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
+            src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+        </iframe>
     </div>
-    <a href="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?utm_content=DAGarHnrIs0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">P2</a> by ooi hiangee
+    <a href="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?utm_content=DAGarHnrIs0&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 10px;">P2</a> by ooi hiangee
     """
 
     # Display the HTML content
-    st.components.v1.html(html_code, height=900)
+    st.components.v1.html(html_code, height=600)
 
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
