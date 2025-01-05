@@ -402,14 +402,14 @@ if selected == "About":
 
     # Title of the page
     st.markdown(
-    "<h1 style='text-align: center;'>Overview - Slideshow</h1>",
-    unsafe_allow_html=True
+        "<h1 style='text-align: center; margin-bottom: 0;'>Overview - Slideshow</h1>",
+        unsafe_allow_html=True
     )
 
     # Slide
     html_code = """
     <div style="display: flex; justify-content: center; width: 100%;">
-        <div style="position: relative; width: 80%; height: 0; padding-top: 46.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
+        <div style="position: relative; width: 80%; height: 0; padding-top: 46.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 0.8em; margin-bottom: 0.8em; overflow: hidden; border-radius: 8px; will-change: transform;">
             <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
             </iframe>
         </div>
@@ -417,10 +417,10 @@ if selected == "About":
     """
 
     # Display the HTML content
-    st.components.v1.html(html_code, height=650)
+    st.components.v1.html(html_code, height=600)  # Reduced height from 650
 
     # Background
-    st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin-top: 0;'>Background</h3>", unsafe_allow_html=True)
     st.markdown("""
     * The currency exchange rate facilitates the international trade of goods and services as well as  the transfer of capital. It indicates the external competitiveness of a country’s economy.
     * Currency strength is directly dependent on the changes in the key macroeconomic indicators such as gross domestic product, interest rate,  inflation, foreign exchange rate, unemployment, etc. 
