@@ -423,7 +423,7 @@ if selected == "About":
     """
 
     # Display the HTML content
-    st.components.v1.html(html_code, height=600)
+    st.components.v1.html(html_code, height=700)
 
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
