@@ -433,6 +433,8 @@ if selected == "About":
 
     # First display the rotated text
     # Rotated text and slideshow side by side
+
+    # Combined rotated text and slideshow using Streamlit components
     st.markdown(
         """
         <div style="display: flex; align-items: center;">
@@ -459,6 +461,7 @@ if selected == "About":
         """,
         unsafe_allow_html=True,
     )
+
 
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
