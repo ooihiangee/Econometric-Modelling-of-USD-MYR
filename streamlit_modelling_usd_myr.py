@@ -402,7 +402,7 @@ if selected == "About":
 
     # Title of the page
     st.markdown(
-    "<h1 style='text-align: center;'Slideshow</h1>",
+    "<h1 style='text-align: center;'>Slideshow</h1>",
     unsafe_allow_html=True
     )
 
