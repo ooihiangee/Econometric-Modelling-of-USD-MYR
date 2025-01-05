@@ -442,8 +442,8 @@ if selected == "About":
                         white-space: nowrap;
                         margin-left: -20px;
                         position: absolute;
-                        left: 40px;      
-                        top: 70%;">      
+                        left: 100px;      
+                        top: 30%;">      
                 Slideshow
             </div>
         </div>
