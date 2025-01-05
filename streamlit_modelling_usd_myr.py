@@ -432,39 +432,33 @@ if selected == "About":
     # st.components.v1.html(html_code, height=650)
 
     # First display the rotated text
+    # Rotated text and slideshow side by side
     st.markdown(
         """
         <div style="display: flex; align-items: center;">
+            <!-- Rotated text -->
             <div style="transform: rotate(-90deg); 
                         font-size: 24px; 
                         font-weight: bold;
-                        width: 40px;
                         white-space: nowrap;
-                        margin-left: -20px;
-                        position: absolute;
-                        left: 100px;      
-                        top: 30%;">      
+                        margin-right: 20px;">      
                 Slideshow
+            </div>
+
+            <!-- Slideshow -->
+            <div style="flex-grow: 1;">
+                <div style="position: relative; width: 80%; height: 0; padding-top: 46.25%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
+                    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" 
+                            src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" 
+                            allowfullscreen="allowfullscreen" 
+                            allow="fullscreen">
+                    </iframe>
+                </div>
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
-
-    # Then display the slide with some left margin to make room for the text
-    html_code = """
-    <div style="margin-left: 40px;">
-        <div style="display: flex; justify-content: center; width: 100%;">
-            <div style="position: relative; width: 80%; height: 0; padding-top: 46.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
-                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-                </iframe>
-            </div>
-        </div>
-    </div>
-    """
-
-    # Display the slide
-    st.components.v1.html(html_code, height=650)
 
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
