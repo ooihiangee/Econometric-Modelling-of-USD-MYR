@@ -412,6 +412,7 @@ if selected == "About":
     # Display the image
     st.image(image_path, caption='', use_container_width=True)
 
+    # Slides
     st.components.v1.html("""
         <iframe src="https://www.canva.com/design/DAGarHnrIs0/zIbeaOXtCje4rD9E9E1Ssg/view?utm_content=DAGarHnrIs0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h822078c64d" 
         frameborder="0" width="700" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
