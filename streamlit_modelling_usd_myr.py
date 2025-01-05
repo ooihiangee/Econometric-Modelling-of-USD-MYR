@@ -406,6 +406,18 @@ if selected == "About":
     unsafe_allow_html=True
     )
 
+    st.markdown(
+        """
+        <div style="transform: rotate(-90deg); 
+                    display: inline-block; 
+                    font-size: 20px; 
+                    font-weight: bold;">
+            Rotated Text
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
     # Slide
     html_code = """
     <div style="display: flex; justify-content: center; width: 100%;">
