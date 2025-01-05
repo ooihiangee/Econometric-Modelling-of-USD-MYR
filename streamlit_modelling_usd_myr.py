@@ -442,15 +442,15 @@ if selected == "About":
                         white-space: nowrap;
                         margin-left: -20px;
                         position: absolute;
-                        left: 0;
-                        top: 50%;">
+                        left: 40px;      /* Increased from 0 to move right */
+                        top: 70%;">      /* Increased from 50% to move lower */
                 Slideshow
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
-
+    
     # Then display the slide with some left margin to make room for the text
     html_code = """
     <div style="margin-left: 40px;">
