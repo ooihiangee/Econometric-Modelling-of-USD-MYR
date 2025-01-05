@@ -433,26 +433,26 @@ if selected == "About":
 
     # First, create the layout for both the rotated text and slides
     st.markdown(
-        """
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <div style="transform: rotate(-90deg); 
-                        font-size: 24px; 
-                        font-weight: bold;
-                        width: 40px;
-                        white-space: nowrap;
-                        margin-left: -20px;">
-                Slideshow
-            </div>
-            
-            <div style="flex: 1;">
-                <div style="position: relative; width: 100%; height: 0; padding-top: 46.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
-                    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-                    </iframe>
-                </div>
+    """
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <div style="transform: rotate(-90deg); 
+                    font-size: 24px; 
+                    font-weight: bold;
+                    width: 40px;
+                    white-space: nowrap;
+                    margin-left: -20px;">
+            Slideshow
+        </div>
+        
+        <div style="flex: 1;">
+            <div style="position: relative; width: 100%; height: 0; padding-top: 46.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
+                <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGarHnrIs0/wg17PXW_zePkuLSVITwDPg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+                </iframe>
             </div>
         </div>
-        """,
-        unsafe_allow_html=True
+    </div>
+    """,
+    unsafe_allow_html=True
     )
 
     # Background
