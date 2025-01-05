@@ -412,12 +412,11 @@ if selected == "About":
     # Display the image
     st.image(image_path, caption='', use_container_width=True)
 
-    # Embed a PDF using an iframe
-    pdf_path = "intro.pdf"
-    st.components.v1.html(f"""
-        <iframe src="{pdf_path}" width="700" height="500" style="border:none;"></iframe>
+    st.components.v1.html("""
+        <iframe src="https://www.canva.com/design/DAGarHnrIs0/zIbeaOXtCje4rD9E9E1Ssg/view?utm_content=DAGarHnrIs0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h822078c64d" 
+        frameborder="0" width="700" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     """, height=600)
-    
+
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
     st.markdown("""
