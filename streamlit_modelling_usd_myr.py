@@ -401,16 +401,16 @@ complete_df = read_data(displayDate=False)
 if selected == "About":
 
     # Title of the page
-    st.markdown(
-    "<h1 style='text-align: center;'>Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors</h1>",
-    unsafe_allow_html=True
-    )
+    # st.markdown(
+    # "<h1 style='text-align: center;'>Econometric Modelling of USD/MYR Exchange Rate Dynamics and Key Macroeconomic Factors</h1>",
+    # unsafe_allow_html=True
+    # )
 
-    # Path to the image
-    image_path = 'banner.png'
+    # # Path to the image
+    # image_path = 'banner.png'
 
-    # Display the image
-    st.image(image_path, caption='', use_container_width=True)
+    # # Display the image
+    # st.image(image_path, caption='', use_container_width=True)
 
     # Slide
     html_code = """
@@ -423,7 +423,7 @@ if selected == "About":
     """
 
     # Display the HTML content
-    st.components.v1.html(html_code, height=500)
+    st.components.v1.html(html_code, height=600)
 
     # Background
     st.markdown("<h3>Background</h3>", unsafe_allow_html=True)
