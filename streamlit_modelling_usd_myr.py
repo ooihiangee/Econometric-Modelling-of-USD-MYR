@@ -465,12 +465,13 @@ if selected == "About":
         'No.': [1, 2, 3, 4, 5, 6],
         'Model': ['ARDL', 'SVM', 'Random Forest', 'XGBoost', 'LightGBM', 'LSTM'],
         'RMSE': [0.059773664, 0.059151017, 0.057159107, 0.056987775, 0.056604, 0.058797031],
-        'NRMSE': [0.099518518, 0.098481859, 0.095165483, 0.094880229, 0.094241273, 0.097892499],
         'MAE': [0.044245332, 0.04290451, 0.045547599, 0.042900981, 0.045134084, 0.044116224],
         'MAPE (%)': [0.98252715, 0.950490555, 1.012725491, 0.946950675, 0.998747381, 0.974567329],
         'R2': [0.908097826, 0.910002496, 0.915961769, 0.916464816, 0.917586136, 0.911076444],
         'Training Time (s)': [30872.7, 1.588016987, 175.2644548, 49.95268512, 17.94534421, 92.97024298]
     }
+
+    st.markdown("To conclude, LightGBM is the best model for forecasting the USD/MYR currency exchange rates with the lowest RMSE and the highest R2. The training time for LightGBM is also relatively fast compared to ARDL, XGBoost, Random Forest and LSTM models.")
 
     # Create the DataFrame
     performance_data_df = pd.DataFrame(performance_data)
