@@ -738,8 +738,35 @@ if selected == "Forecasting Model":
             # Ensure Date is in datetime format
             forecast_df["Date"] = pd.to_datetime(forecast_df["Date"])
 
-            # Create checkbox that's checked by default
-            show_all = st.checkbox('Show Only the Best Model', value=True)
+            # Initialize session state if not already done
+            if 'show_best' not in st.session_state:
+                st.session_state.show_best = True
+            if 'show_all' not in st.session_state:
+                st.session_state.show_all = False
+
+            # Callback functions to handle mutual exclusivity
+            def toggle_best():
+                if st.session_state.show_best:
+                    st.session_state.show_all = False
+                
+            def toggle_all():
+                if st.session_state.show_all:
+                    st.session_state.show_best = False
+
+            # Create columns for centered layout
+            left_col, center_col1, center_col2, right_col = st.columns([1, 1, 1, 1])
+
+            # Place checkboxes in the center columns side by side with callbacks
+            with center_col1:
+                show_best = st.checkbox('Show Only the Best Model', 
+                                    value=st.session_state.show_best,
+                                    on_change=toggle_best,
+                                    key='show_best')
+            with center_col2:
+                show_all = st.checkbox('Show All Models', 
+                                    value=st.session_state.show_all,
+                                    on_change=toggle_all,
+                                    key='show_all')
 
             if show_all:
 
@@ -769,7 +796,7 @@ if selected == "Forecasting Model":
                 # Forecast Future Values
                 st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
 
-            else:
+            if show_best:
 
                 # Streamlit App
                 st.title("Forecasted USD/MYR Exchange Rates by Models")
