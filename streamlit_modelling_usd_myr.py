@@ -768,7 +768,7 @@ if selected == "Forecasting Model":
                                     on_change=toggle_all,
                                     key='show_all')
 
-            if show_all:
+            if show_best:
 
                 # Filter the forecast data to show only the best model
                 best_model = "LightGBM"
@@ -796,7 +796,7 @@ if selected == "Forecasting Model":
                 # Forecast Future Values
                 st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
 
-            if show_best:
+            if show_all:
 
                 # Streamlit App
                 st.title("Forecasted USD/MYR Exchange Rates by Models")
