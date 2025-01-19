@@ -778,7 +778,7 @@ if selected == "Forecasting Model":
                 forecast_df.columns = ["Date", "Exchange Rate"]
 
                  # Streamlit App
-                st.title("Forecasted USD/MYR Exchange Rates by LightGBM")
+                st.title("Forecasted USD/MYR Exchange Rates by the Best Model: LightGBM")
 
                 # Line Chart using Altair
                 chart = alt.Chart(forecast_df).mark_line(point=True).encode(
@@ -788,7 +788,7 @@ if selected == "Forecasting Model":
                 ).properties(
                     width=700,
                     height=400,
-                    title="Forecasted Exchange Rates by LightGBM"
+                    title="Forecasted Exchange Rates"
                 )
 
                 st.altair_chart(chart, use_container_width=True)
