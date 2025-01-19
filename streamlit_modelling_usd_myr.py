@@ -738,28 +738,61 @@ if selected == "Forecasting Model":
             # Ensure Date is in datetime format
             forecast_df["Date"] = pd.to_datetime(forecast_df["Date"])
 
-            # Streamlit App
-            st.title("Forecasted USD/MYR Exchange Rates by Models")
+            # Create checkbox that's checked by default
+            show_all = st.checkbox('Show Only the Best Model', value=True)
 
-            # Line Chart using Altair
-            chart = alt.Chart(forecast_df).transform_fold(
-                fold=["SVM", "RF", "XGB", "LightGBM", "LSTM"],
-                as_=["Model", "Exchange Rate"]
-            ).mark_line(point=True).encode(
-                x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
-                y=alt.Y("Exchange Rate:Q", title="Exchange Rate (USD/MYR)", scale=alt.Scale(zero=False)),
-                color=alt.Color("Model:N", title="Model"),
-                tooltip=["Date:T", "Model:N", "Exchange Rate:Q"]
-            ).properties(
-                width=700,
-                height=400,
-                title="Forecasted Exchange Rates"
-            )
+            if show_all:
 
-            st.altair_chart(chart, use_container_width=True)
+                # Filter the forecast data to show only the best model
+                best_model = "LightGBM"
+                forecast_df = forecast_df[["Date", best_model]]
 
-            # Forecast Future Values
-            st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
+                # Rename the columns
+                forecast_df.columns = ["Date", "Exchange Rate"]
+
+                 # Streamlit App
+                st.title("Forecasted USD/MYR Exchange Rates by LightGBM")
+
+                # Line Chart using Altair
+                chart = alt.Chart(forecast_df).mark_line(point=True).encode(
+                    x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
+                    y=alt.Y("Exchange Rate:Q", title="Exchange Rate (USD/MYR)", scale=alt.Scale(zero=False)),
+                    tooltip=["Date:T", "Exchange Rate:Q"]
+                ).properties(
+                    width=700,
+                    height=400,
+                    title="Forecasted Exchange Rates by LightGBM"
+                )
+
+                st.altair_chart(chart, use_container_width=True)
+
+                # Forecast Future Values
+                st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
+
+            else:
+
+                # Streamlit App
+                st.title("Forecasted USD/MYR Exchange Rates by Models")
+
+                # Line Chart using Altair
+                chart = alt.Chart(forecast_df).transform_fold(
+                    fold=["SVM", "RF", "XGB", "LightGBM", "LSTM"],
+                    as_=["Model", "Exchange Rate"]
+                ).mark_line(point=True).encode(
+                    x=alt.X("Date:T", title="Date", timeUnit="yearmonth", axis=alt.Axis(format="%b %y")),
+                    y=alt.Y("Exchange Rate:Q", title="Exchange Rate (USD/MYR)", scale=alt.Scale(zero=False)),
+                    color=alt.Color("Model:N", title="Model"),
+                    tooltip=["Date:T", "Model:N", "Exchange Rate:Q"]
+                ).properties(
+                    width=700,
+                    height=400,
+                    title="Forecasted Exchange Rates"
+                )
+
+                st.altair_chart(chart, use_container_width=True)
+
+                # Forecast Future Values
+                st.markdown(generate_centered_table_html(forecast_df), unsafe_allow_html=True)
     
     else:
         st.info("Please upload a CSV file to start forecasting.")
