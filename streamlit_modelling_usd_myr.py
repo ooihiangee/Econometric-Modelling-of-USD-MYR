@@ -400,6 +400,13 @@ complete_df = read_data(displayDate=False)
 # About Page
 if selected == "About":
 
+    # Disclaimer
+    info_icon = ":information_source:"
+
+    st.info(
+        f"{info_icon} The work is part of my University of Malaya master research project supervised by Dr. Riyaz Ahamed Ariyaluran Habeeb Mohamed.",
+    )
+
     # Title of the page
     st.markdown(
         "<h1 style='text-align: center; margin-bottom: 0;'>Overview - Slideshow</h1>",
@@ -632,10 +639,6 @@ if selected == "Forecasting Model":
 
             # Choose the segment of the dataframe to forecast
             combined_df_to_forecast = data_with_lags.iloc[-forecast_period:]
-
-            # -----Load ARDL Model----
-            # data_load_state = st.text('Loading ARDL model...')
-            # time.sleep(3)
 
             # -----Load SVM Model-----
             data_load_state = st.text('Loading SVM model...')
