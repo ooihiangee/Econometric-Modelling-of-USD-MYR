@@ -404,7 +404,7 @@ if selected == "About":
     info_icon = ":information_source:"
 
     st.info(
-        f"{info_icon} The work is part of my University of Malaya master research project supervised by Dr. Riyaz Ahamed Ariyaluran Habeeb Mohamed.",
+        f"{info_icon} The work is part of my University of Malaya research project for Master of Data Science and it is under supervision by Dr. Riyaz Ahamed Ariyaluran Habeeb Mohamed.",
     )
 
     # Title of the page
