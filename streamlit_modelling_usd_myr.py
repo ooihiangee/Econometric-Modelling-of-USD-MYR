@@ -404,7 +404,7 @@ if selected == "About":
     info_icon = ":information_source:"
 
     st.info(
-        f"{info_icon} This research is part of my Master of Data Science research project at University of Malaya under the supervision of Dr. Riyaz Ahamed Ariyaluran Habeeb Mohamed",
+        f"{info_icon} This work is part of my Master of Data Science research project at University of Malaya under the supervision of Dr. Riyaz Ahamed Ariyaluran Habeeb Mohamed.",
     )
 
     # Title of the page
@@ -448,12 +448,12 @@ if selected == "About":
     * **Lack of Bilateral Analysis:**
         * There is a lack of studies that analyse the relationship between the macroeconomic factors of both the home country and the foreign country.
             
-    Thus, this study will focus the context mainly to Malaysia instead of other countries. In addition, this study aims to also utilise the most contemporary dataset from a set of both Malaysia and US macroeconomic factors to discern the determinants of both long-run and short-run dynamics of the Malaysia currency exchange rates over the time.
+    Thus, this study will focus the context mainly to Malaysia instead of other countries. In addition, this study aims to also utilise the most contemporary dataset from a set of both Malaysia and US macroeconomic factors to identify the determinants of the Malaysia currency exchange rate movements over the time.
     """)
 
     # Data
     st.markdown("<h3>Data Used</h3>", unsafe_allow_html=True)
-    st.markdown("There are a total of 18 variables utilised in this study to map the relationship between the macroeconomic factors and USD/MYR currency exchange rates. All the data is secondary data obtained from a range of reliable source, namely Yahoo Finance at https://finance.yahoo.com/, Malaysia’s official open data portal at https://data.gov.my/, Central Bank of Malaysia (BNM) at https://www.bnm.gov.my/, United States Census Bureau at https://www.census.gov/ and Federal Reserve Economic Data (FRED) at https://fred.stlouisfed.org/. The data obtained is of monthly time series data which spans the period from January 2015 until July 2024.")
+    st.markdown("There is a total of 18 variables utilised in this study to map the relationship between the macroeconomic factors and USD/MYR currency exchange rates. All the data is secondary data obtained from a range of reliable source, namely Yahoo Finance at https://finance.yahoo.com/, Malaysia’s official open data portal at https://data.gov.my/, Central Bank of Malaysia (BNM) at https://www.bnm.gov.my/, United States Census Bureau at https://www.census.gov/ and Federal Reserve Economic Data (FRED) at https://fred.stlouisfed.org/. The data obtained is of monthly time series data which spans the period from January 2015 until July 2024.")
     
     # Data Dictionary
     st.caption('**Table 1.** Data Dictionary.')
@@ -465,7 +465,7 @@ if selected == "About":
 
     # Model Performance
     st.markdown("<h3>Model Performance</h3>", unsafe_allow_html=True)
-    st.markdown("The model performance is evaluated based on the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), Mean Absolute Percentage Error (MAPE) and R-squared (R2). The model with the lowest error metrics is considered the best model for forecasting the USD/MYR currency exchange rates.")
+    st.markdown("The model performance was evaluated based on the Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), Mean Absolute Percentage Error (MAPE) and R-squared (R2). The model with the lowest error metrics was considered the best model for forecasting the USD/MYR currency exchange rates.")
     
     # Define the data as a dictionary
     performance_data = {
@@ -478,7 +478,7 @@ if selected == "About":
         'Training Time (s)': [30872.7, 1.588016987, 175.2644548, 49.95268512, 17.94534421, 92.97024298]
     }
 
-    st.markdown("To conclude, LightGBM is the best model for forecasting the USD/MYR currency exchange rates with the lowest RMSE and the highest R2. The training time for LightGBM is also relatively fast compared to ARDL, XGBoost, Random Forest and LSTM models.")
+    st.markdown("To conclude, LightGBM was the best model for forecasting the USD/MYR currency exchange rates with the lowest RMSE and the highest R2. The training time for LightGBM was also relatively fast compared to ARDL, XGBoost, Random Forest and LSTM models.")
 
     # Create the DataFrame
     performance_data_df = pd.DataFrame(performance_data)
