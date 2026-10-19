@@ -12,6 +12,7 @@ streamlit==1.41.1
 streamlit-option-menu
 streamlit-aggrid
 pygwalker==0.4.9.13
+pyarrow
 
 # Statistical and Machine Learning Libraries
 pmdarima==2.0.3
