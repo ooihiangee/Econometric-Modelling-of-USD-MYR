@@ -30,7 +30,6 @@ yfinance
 
 # Miscellaneous
 urllib3
-setuptools>=65.0.0   # modern version ensures pkg_resources works
 pip>=21.3            # keep pip fresh
 wheel>=0.37.0        # needed for building some packages
 
